@@ -8,7 +8,10 @@ Each module has its own section where I can add things I learn over time.
 ## Module 00 – Basics
 - C++ `static_cast` are checked by the compiler. `C style casts`  aren't and can fail at runtime.
 - C++ `dynamic_cast` can fail at runtime.
-- 
+- use `std::endl` for debuging or log file.
+- `std::endl` prints a new line and flushes the stream buffer.
+- `std::'\n` Adds a newline, but does not flush the buffer.Faster, preferred in performance-critical code.
+
 ---
 
 ## Module 01 – Functions & Program Structure
