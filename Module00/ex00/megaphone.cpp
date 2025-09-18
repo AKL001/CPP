@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cctype>
 
+
 int main(int ac,char **av)
 {
     int i , j;
@@ -17,8 +18,8 @@ int main(int ac,char **av)
         {
             j = -1;
             while(av[i][++j])
-                std::cout << static_cast<char>(toupper(av[i][j]));
-            // used static_cast for type safety 
+                std::cout << static_cast<char>(std::toupper(av[i][j]));
+            // used static_cast for type safety instead of C_type cast
         }
     }
     std::cout << '\n';
