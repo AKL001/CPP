@@ -2,6 +2,8 @@
 #define CONTACT_HPP
 #include <string>
 
+/* Using  Constuctor for inialization , also using the 
+inilization lists syntax */
 class Contact 
 {
     private:
@@ -12,41 +14,33 @@ class Contact
         std::string _phonenumber;
     
     public:
-    /* Using  Constuctor for inialization , also using the inilization lists syntax */
-        Contact(std::string firstname,std::string lastname,std::string nickname,std::string ds ,std::string phonenumber) : _firstname(firstname) , _lastname(lastname) ,_nickname(nickname) , _darkestsecret(ds) , _phonenumber(phonenumber)
-        {}
+       // defining default Constuctor . dont make the implementation here  cuase the linker wont know that , this means its defined but the linker need to look for it in the (.cpp) file.
+    Contact();
+
+    Contact(const std::string& firstname,
+            const std::string& lastname,
+            const std::string& nickname,
+            const std::string& ds,
+            const std::string& phonenumber);
+    // Destructor definition 
+    ~Contact();
 
     /* getters */
-    std::string getFirstName() {return _firstname;}
-    std::string getLastName() {return _lastname;}
-    std::string getNickName() {return _nickname;}
-    std::string getDarkestSecret() {return _darkestsecret;}
-    std::string getPhoneNumber() {return _phonenumber;}
+    const std::string &getFirstName() const;
+    const std::string &getLastName() const;
+    const std::string &getNickName() const;
+    const std::string &getDarkestSecret() const;
+    const std::string &getPhoneNumber() const;
 
     /* setters */
     // first name setter
-    void setFirstName(std::string firstname)
-    {
-        _firstname = firstname;
-    }
-    void setLastName(std::string lastname)
-    {
-        _lastname =  lastname;
-    }
-    void setNickName(std::string nickname)
-    {
-        _nickname = nickname;
-    }
-    void setDarkestSecret(std::string darkestsecret)
-    {
-        _darkestsecret = darkestsecret;
-    }
-    void setPhoneNumber(std::string phonenumber)
-    {
-        _phonenumber = phonenumber;
-    }
+    void setFirstName(std::string firstname);
+    void setLastName(std::string lastname);
+    void setNickName(std::string nickname);
+    void setDarkestSecret(std::string darkestsecret);
+    void setPhoneNumber(std::string phonenumber);
 
-    
+
 };
 
 
