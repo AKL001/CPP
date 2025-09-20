@@ -2,12 +2,13 @@
 #include <iostream>
 #include <string>
 
-// default Constructor
+/*
+-default Constructor
 Contact::Contact()
 {
    std::cout << "Default Constructor..." << std::endl; 
 }
-
+-constructor implemntation
 Contact::Contact(const std::string& firstname,
                  const std::string& lastname,
                  const std::string& nickname,
@@ -17,6 +18,7 @@ Contact::Contact(const std::string& firstname,
       _nickname(nickname), _darkestsecret(ds),
       _phonenumber(phonenumber)
 {}
+*/
 
 // default Destructor implementation
 Contact::~Contact()
@@ -73,3 +75,13 @@ void Contact::setPhoneNumber(std::string phonenumber)
     _phonenumber = phonenumber;
 }
 
+
+void Contact::display() const 
+{
+    std::cout << "First: " << _firstname 
+              << ", Last: " << _lastname 
+              << ", Nick: " << _nickname
+              << ", Secret: " << _darkestsecret
+              << ", Phone: " << _phonenumber
+              << std::endl;
+}

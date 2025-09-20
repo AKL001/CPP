@@ -14,14 +14,19 @@ class Contact
         std::string _phonenumber;
     
     public:
-       // defining default Constuctor . dont make the implementation here  cuase the linker wont know that , this means its defined but the linker need to look for it in the (.cpp) file.
-    Contact();
+    // defining default Constuctor . dont make the implementation here  cuase the linker wont know that , this means its defined but the linker need to look for it in the (.cpp) file.
+    // need inline for the compiler (linker to indentify it)
+    Contact()
+    {
 
-    Contact(const std::string& firstname,
-            const std::string& lastname,
-            const std::string& nickname,
-            const std::string& ds,
-            const std::string& phonenumber);
+    };
+
+    Contact(const std::string& firstname, const std::string& lastname,
+            const std::string& nickname, const std::string& ds,
+            const std::string& phonenumber)
+        : _firstname(firstname), _lastname(lastname), _nickname(nickname),
+          _darkestsecret(ds), _phonenumber(phonenumber)
+    {}
     // Destructor definition 
     ~Contact();
 
@@ -39,6 +44,9 @@ class Contact
     void setNickName(std::string nickname);
     void setDarkestSecret(std::string darkestsecret);
     void setPhoneNumber(std::string phonenumber);
+
+
+    void display() const;
 
 
 };
