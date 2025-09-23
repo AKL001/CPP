@@ -1,52 +1,57 @@
 #include <cfloat>
 #include <iostream>
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
-// #include "PhoneBook.hpp"
-
-std::string trim(const std::string &s)
-{
-    size_t start = 0;
-    while (start < s.size() && std::isspace(s[start]))
-        start++;
-
-    size_t end = s.size();
-    while (end > start && std::isspace(s[end - 1]))
-        end--;
-
-    return s.substr(start, end - start);
-}
 
 
 int main(int ac,char **av) {
     PhoneBook pb;
     (void)av;
+
     if (ac != 1)
-     return (std::cout << "Program must have no arguments" << std::endl,1);
+        return (std::cout << RED << "Program must have no arguments" 
+                          << RESET << std::endl, 1);
 
     while (1)
     {
         std::string command;
-        std::cout << "Choose one command: ADD, SEARCH, or EXIT" << std::endl;
+        std::cout << CYAN << "Choose one command: " 
+                  << GREEN << "ADD" << RESET << ", "
+                  << YELLOW << "SEARCH" << RESET << ", or "
+                  << RED << "EXIT" << RESET << std::endl;
+
         std::getline(std::cin, command);
+
         // for ctrl + D , eof ;
         if(std::cin.eof())
         {
-            std::cout << "Exiting..." << std::endl;
+            std::cout << RED << "Exiting..." << RESET << '\n';
             break; // leave the loop
         }
-        command = trim(command);
+
+        command = pb.trim(command);
+
+        if (command.empty())
+        {
+            std::cout << "Empty input, please type a command." << std::endl;
+            continue;
+        }
         if (command == "ADD")
-            std::cout << "You chose ADD" << std::endl;
+        {
+            // std::cout << GREEN << "✔ You chose ADD" << RESET << '\n';
+            pb.newContact(pb);
+        }
         else if (command == "SEARCH")
-            std::cout << "You chose SEARCH" << std::endl;
+        {
+            // std::cout << YELLOW << "You chose SEARCH" << RESET << '\n';
+            pb.displayContacts();
+        }
         else if (command == "EXIT")
         {
-            std::cout << "Exiting..." << std::endl;
+            std::cout << RED << "Exiting..." << RESET << '\n';
             break; // leave the loop
         }
         else
-            std::cout << "Invalid command. Try again." << std::endl;
+            std::cout << MAGENTA << "Invalid command. Try again." << RESET << '\n';
     }
     return 0;
 }

@@ -2,7 +2,16 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include <iostream>
+
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define BOLD    "\033[1m"
 
 class PhoneBook
 {
@@ -14,7 +23,15 @@ class PhoneBook
 public:
     PhoneBook() : _id(0), count(0) {}
 
-    void addContact(const Contact& c); 
+    // std::string getInput(const std::string &prompt);
+    static std::string trim(const std::string &s);
+
+    bool getInput(const std::string &prompt, std::string &out);
+
+    void newContact(PhoneBook &pb);
+    
+    void addContact(const std::string &firstname,const std::string &lastname,const std::string &nickname,const std::string &ds,const std::string &phonenumber);
+
     // {
     //     if (count < 8) {
     //         contacts[count] = c;
