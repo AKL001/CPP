@@ -26,8 +26,9 @@ void PhoneBook::displayContacts() const {
     }
 
     std::cout << "Contacts list:" << std::endl;
-    int start = (_id >= 8) ? _id % 8 : 0; // oldest contact
-    for (int i = 0; i < count; i++) {
+    int start = (_id >= 8) ? _id % 8 : 0;
+    for (int i = 0; i < count; i++) 
+    {
         int index = (start + i) % 8;
         std::cout << "[" << i << "] ";
         contacts[index].display();
