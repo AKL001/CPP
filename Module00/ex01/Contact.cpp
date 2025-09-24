@@ -23,7 +23,7 @@ Contact::Contact(const std::string& firstname,
 // default Destructor implementation
 Contact::~Contact()
 {
-    std::cout << "Destructor..." << std::endl;
+
 }
 
 /*---------------getters-----------------*/
@@ -76,14 +76,32 @@ void Contact::setPhoneNumber(std::string phonenumber)
 }
 
 
-void Contact::display() const 
-{
-    std::cout << "First: " << _firstname 
-              << ", Last: " << _lastname 
-              << ", Nick: " << _nickname
-              << ", Secret: " << _darkestsecret
-              << ", Phone: " << _phonenumber
-              << std::endl;
-}
+// void Contact::display() const 
+// {
+//     std::cout << "| Index" << "| first name" << "| last name" << "| nick name" << std::endl;
+//     std::cout << "First: " << _firstname 
+//               << ", Last: " << _lastname 
+//               << ", Nick: " << _nickname
+//               << ", Secret: " << _darkestsecret
+//               << ", Phone: " << _phonenumber
+//               << std::endl;
+// }
 
+void Contact::display(int index, bool printHeader) const 
+{
+        if (printHeader) {
+            std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+        }
+
+        std::stringstream ss;
+        ss << index;
+        std::string idx_str = ss.str();
+        idx_str = std::string(10 - idx_str.length(), ' ') + idx_str;
+
+        std::cout << "|" << idx_str
+                  << "|" << format_field(_firstname)
+                  << "|" << format_field(_lastname)
+                  << "|" << format_field(_nickname)
+                  << "|" << std::endl;
+}
 

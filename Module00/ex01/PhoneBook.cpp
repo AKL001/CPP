@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-
 // PhoneBook::PhoneBook()
 // {
 // }
@@ -81,13 +80,17 @@ void PhoneBook::displayContacts() const {
         std::cout << YELLOW << "PhoneBook is empty." << RESET << std::endl;
         return;
     }
-
-    std::cout << CYAN << "Contacts list:" << RESET << std::endl;
+    bool header = true;
+    std::cout << CYAN << "------Contacts list:------" << RESET << std::endl;
+    std::cout << "| Index |First Name| Last Name|  Nickname|" << std::endl;
     int start = (_id >= 8) ? _id % 8 : 0;
+
     for (int i = 0; i < count; i++) 
     {
         int index = (start + i) % 8;
-        std::cout << "[" << i << "] ";
-        contacts[index].display();
+        contacts[index].display(index,header);
+        if (header)
+            header = false;
     }
 }
+

@@ -32,6 +32,8 @@ public:
     
     void addContact(const std::string &firstname,const std::string &lastname,const std::string &nickname,const std::string &ds,const std::string &phonenumber);
 
+    // void display_summary(int index) const;
+
     // {
     //     if (count < 8) {
     //         contacts[count] = c;
