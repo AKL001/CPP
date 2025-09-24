@@ -32,7 +32,7 @@ class Contact
     {}
     // Destructor definition 
     ~Contact();
-    // helper function
+    // helper function definition 
 
     std::string format_field(const std::string& field) const {
     if (field.length() > 10)
@@ -40,6 +40,7 @@ class Contact
     else
         return std::string(10 - field.length(), ' ') + field;
     }
+    
     // display contact fun 
     void display(int index, bool printHeader = false) const;
 

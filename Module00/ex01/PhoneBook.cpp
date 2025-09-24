@@ -2,6 +2,7 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 // PhoneBook::PhoneBook()
 // {
@@ -51,7 +52,26 @@ void PhoneBook::newContact(PhoneBook &pb)
     if (!getInput("Enter last name: ", lastname)) return;
     if (!getInput("Enter nickname: ", nickname)) return;
     if (!getInput("Enter darkest secret: ", darkestsecret)) return;
-    if (!getInput("Enter phone number: ", phonenumber)) return;
+    // valid number
+    while (true)
+    {
+        if (!getInput("Enter phone number: ", phonenumber)) return;
+
+        bool valid = true;
+        for (size_t i = 0; i < phonenumber.length(); i++)
+        {
+            if (!isdigit(phonenumber[i]))
+            {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid && phonenumber.length() <= 10)
+            break;
+        else
+            std::cout << RED << "Error: Phone number must contain digits only (max 10 chars). Please try again." << RESET << std::endl;
+    }
 
     pb.addContact(firstname, lastname, nickname, darkestsecret, phonenumber);
 }
@@ -59,8 +79,14 @@ void PhoneBook::newContact(PhoneBook &pb)
 
 void PhoneBook::addContact(const std::string &firstname,const std::string &lastname,const std::string &nickname,const std::string &ds,const std::string &phonenumber)
 {
-    Contact c;
     // we need to add some checkes here 
+    if (firstname.length() > 50 || lastname.length() > 50 || nickname.length() > 50 || ds.length() > 100 || phonenumber.length() > 10)
+    {
+        std::cout << CYAN << "Error: One or more fields exceed maximum length!" << RESET << std::endl;
+        return;
+    }
+
+    Contact c;
 
     c.setFirstName(firstname);
     c.setLastName(lastname);
@@ -81,8 +107,7 @@ void PhoneBook::displayContacts() const {
         return;
     }
     bool header = true;
-    std::cout << CYAN << "------Contacts list:------" << RESET << std::endl;
-    std::cout << "| Index |First Name| Last Name|  Nickname|" << std::endl;
+    std::cout << CYAN << "-----------Contacts list:-----------" << RESET << std::endl;
     int start = (_id >= 8) ? _id % 8 : 0;
 
     for (int i = 0; i < count; i++) 
@@ -91,6 +116,46 @@ void PhoneBook::displayContacts() const {
         contacts[index].display(index,header);
         if (header)
             header = false;
+    }
+    // here we add the search by INDEX
+    std::string  search_by_index;
+    while (1)
+    {
+        std::cout << BOLD << "Enter index :" << RESET << std::endl;
+        if (std::cin.eof())
+            return;
+        if (!std::getline(std::cin, search_by_index) || search_by_index.empty())
+        {
+            std::cout << "Please choose a number!" << std::endl;
+            continue;
+        }
+
+        // check all characters are digits for  search_by_index
+        bool valid = true;
+        for (size_t i = 0; i < search_by_index.length(); i++)
+        {
+            if (!isdigit(search_by_index[i]))
+            {
+                valid = false;
+                break;
+            }
+        }
+        if (!valid)
+        {
+            std::cout << "Please enter a valid number!" << std::endl;
+            continue;
+        }
+
+        int int_index = atoi(search_by_index.c_str());
+        if (int_index < 0 || int_index >= count)
+        {
+            std::cout << "Number out of range" << std::endl;
+            continue;
+        }
+
+        int index = (_id >= 8) ? (_id % 8 + int_index) % 8 : int_index;
+        contacts[index].display(int_index, true);
+        break;
     }
 }
 

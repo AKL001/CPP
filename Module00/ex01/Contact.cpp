@@ -75,22 +75,12 @@ void Contact::setPhoneNumber(std::string phonenumber)
     _phonenumber = phonenumber;
 }
 
-
-// void Contact::display() const 
-// {
-//     std::cout << "| Index" << "| first name" << "| last name" << "| nick name" << std::endl;
-//     std::cout << "First: " << _firstname 
-//               << ", Last: " << _lastname 
-//               << ", Nick: " << _nickname
-//               << ", Secret: " << _darkestsecret
-//               << ", Phone: " << _phonenumber
-//               << std::endl;
-// }
-
 void Contact::display(int index, bool printHeader) const 
 {
         if (printHeader) {
+            std::cout << "#___________________________________________#" << std::endl;
             std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+            std::cout << "|----------|----------|----------|----------|" << std::endl;
         }
 
         std::stringstream ss;

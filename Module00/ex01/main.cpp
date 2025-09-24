@@ -36,15 +36,9 @@ int main(int ac,char **av) {
             continue;
         }
         if (command == "ADD")
-        {
-            // std::cout << GREEN << "✔ You chose ADD" << RESET << '\n';
             pb.newContact(pb);
-        }
         else if (command == "SEARCH")
-        {
-            // std::cout << YELLOW << "You chose SEARCH" << RESET << '\n';
             pb.displayContacts();
-        }
         else if (command == "EXIT")
         {
             std::cout << RED << "Exiting..." << RESET << '\n';
