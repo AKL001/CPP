@@ -19,7 +19,6 @@ class PhoneBook
     int     _id;
     int     count;
 
-
 public:
     PhoneBook() : _id(0), count(0) {}
 
@@ -32,31 +31,8 @@ public:
     
     void addContact(const std::string &firstname,const std::string &lastname,const std::string &nickname,const std::string &ds,const std::string &phonenumber);
 
-    // void display_summary(int index) const;
-
-    // {
-    //     if (count < 8) {
-    //         contacts[count] = c;
-    //         count++;
-    //     } else {
-    //         std::cout << "PhoneBook is full!" << std::endl;
-    //     }
-    // }
-
     void displayContacts() const; 
-    // {
-    //     for (int i = 0; i < count; i++) {
-    //         std::cout << "Contact " << i + 1 << ":\n";
-    //         std::cout << "  First Name: " << contacts[i].getFirstName() << "\n";
-    //         std::cout << "  Last Name: " << contacts[i].getLastName() << "\n";
-    //         std::cout << "  Nickname: " << contacts[i].getNickName() << "\n";
-    //         std::cout << "  Phone: " << contacts[i].getPhoneNumber() << "\n";
-    //         std::cout << "  Darkest Secret: " << contacts[i].getDarkestSecret() << "\n\n";
-    //     }
-    // }
 
 };
-
-
 
 #endif

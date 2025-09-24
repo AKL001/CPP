@@ -2,7 +2,6 @@
 #define CONTACT_HPP
 #include <string>
 #include <cctype>
-#include <sstream>
 
 /* Using  Constuctor for inialization , also using the 
 inilization lists syntax */
@@ -32,7 +31,7 @@ class Contact
     // Destructor definition 
     ~Contact();
     
-    // helper function definition 
+    // helper function ( definition) 
     std::string format_field(const std::string& field) const {
     if (field.length() > 10)
         return field.substr(0, 9) + ".";
