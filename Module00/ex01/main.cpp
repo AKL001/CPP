@@ -2,7 +2,6 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 
-
 int main(int ac,char **av) {
     PhoneBook pb;
     (void)av;
@@ -25,7 +24,7 @@ int main(int ac,char **av) {
         if(std::cin.eof())
         {
             std::cout << RED << "Exiting..." << RESET << '\n';
-            break; // leave the loop
+            break; 
         }
 
         command = pb.trim(command);
@@ -42,7 +41,7 @@ int main(int ac,char **av) {
         else if (command == "EXIT")
         {
             std::cout << RED << "Exiting..." << RESET << '\n';
-            break; // leave the loop
+            break; 
         }
         else
             std::cout << MAGENTA << "Invalid command. Try again." << RESET << '\n';

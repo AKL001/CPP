@@ -1,6 +1,8 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <string>
+// for std::setw (set width)
+#include <iomanip>
 
 /*
 -default Constructor
@@ -83,15 +85,10 @@ void Contact::display(int index, bool printHeader) const
             std::cout << "|----------|----------|----------|----------|" << std::endl;
         }
 
-        std::stringstream ss;
-        ss << index;
-        std::string idx_str = ss.str();
-        idx_str = std::string(10 - idx_str.length(), ' ') + idx_str;
-
-        std::cout << "|" << idx_str
-                  << "|" << format_field(_firstname)
-                  << "|" << format_field(_lastname)
-                  << "|" << format_field(_nickname)
-                  << "|" << std::endl;
+        std::cout << "|" << std::setw(10) << std::right << index
+              << "|" << format_field(_firstname)
+              << "|" << format_field(_lastname)
+              << "|" << format_field(_nickname)
+              << "|" << std::endl;
 }
 

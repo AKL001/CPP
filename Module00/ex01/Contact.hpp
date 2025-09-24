@@ -15,7 +15,6 @@ class Contact
         std::string _darkestsecret;
         std::string _phonenumber;
     
-
     public:
     // defining default Constuctor . dont make the implementation here  cuase the linker wont know that , this means its defined but the linker need to look for it in the (.cpp) file.
     // need inline for the compiler (linker to indentify it)
@@ -32,16 +31,16 @@ class Contact
     {}
     // Destructor definition 
     ~Contact();
+    
     // helper function definition 
-
     std::string format_field(const std::string& field) const {
     if (field.length() > 10)
         return field.substr(0, 9) + ".";
     else
         return std::string(10 - field.length(), ' ') + field;
     }
-    
-    // display contact fun 
+
+    // display contact func
     void display(int index, bool printHeader = false) const;
 
     /* getters */
@@ -58,10 +57,6 @@ class Contact
     void setNickName(std::string nickname);
     void setDarkestSecret(std::string darkestsecret);
     void setPhoneNumber(std::string phonenumber);
-
-
-
-
 };
 
 
