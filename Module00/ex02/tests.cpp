@@ -3,7 +3,6 @@
 #include <functional>
 #include "Account.hpp"
 
-
 int		main( void ) {
 
 	typedef std::vector<Account::t>							  accounts_t;
