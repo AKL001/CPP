@@ -1,1 +1,4 @@
-gitpush 
+gitpush
+.vscode
+./vscode
+/Module00/.vscode
