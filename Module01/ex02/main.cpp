@@ -7,6 +7,18 @@
 #define YELLOW  "\033[33m"
 #define MAGENTA "\033[35m"
 
+// The goal is to understand the difference between:
+//   - a POINTER (*): stores the memory address of a variable, 
+//     can be reassigned to point to another variable, 
+//     and can be nullptr (pointing to nothing).
+//   - a REFERENCE (&): an alias to an existing variable, 
+//     cannot be changed to refer to another one once initialized,
+//     and cannot be null.
+//
+// In practice, both give access to the same value, but their
+// behavior and usage are different. This exercise demonstrates
+// that both pointers and references can access the same object.
+
 int main()
 {
     std::string _message = "HI THIS IS BRAIN";
