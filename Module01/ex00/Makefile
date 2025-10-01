@@ -12,10 +12,10 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
 
-$(NAME) : $(OBJCS) $(HEADER)
+$(NAME) : $(OBJCS) 
 	$(CPP) $(CPPFLAGS) $(OBJCS) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp $(HEADER)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -25,3 +25,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

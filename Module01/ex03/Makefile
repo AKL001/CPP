@@ -1,7 +1,8 @@
+NAME = War
 
-NAME = printMemory
+SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
-SRC = main.cpp 
+HEADER = HumanA.hpp HumanB.hpp Weapon.hpp 
 
 OBJC = $(SRC:.cpp=.o)
 
@@ -13,6 +14,9 @@ all: $(NAME)
 
 $(NAME): $(OBJC)
 	$(CPP) $(FLAGS) $(SRC) -o $(NAME)
+
+%.o:%.cpp $(HEADER)
+	$(CPP) $(FLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJC)

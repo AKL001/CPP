@@ -12,11 +12,11 @@ FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME) : $(OBJCS) $(HEADER)
-	$(CPP) $(CPPFLAGS) $(OBJCS) -o $(NAME)
+$(NAME) : $(OBJCS) 
+	$(CPP) $(FLAGS) $(OBJCS) -o $(NAME)
 
-%.o:%.cpp
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+%.o:%.cpp $(HEADER)
+	$(CPP) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJCS)
@@ -25,3 +25,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
