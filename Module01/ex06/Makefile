@@ -1,0 +1,29 @@
+NAME = harlFilter
+
+SRCS = Harl.cpp main.cpp
+
+HEADER = Harl.hpp
+
+OBJCS = $(SRCS:.cpp=.o)
+
+CPP = c++
+
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+
+all: $(NAME)
+
+$(NAME) : $(OBJCS)
+	$(CPP) $(CPPFLAGS) $(OBJCS) -o $(NAME)
+
+%.o:%.cpp $(HEADER)
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJCS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
