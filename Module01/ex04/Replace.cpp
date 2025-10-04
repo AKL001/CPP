@@ -6,7 +6,7 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 07:22:19 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/04 07:22:19 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/04 13:40:37 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void Replace::replace_content(void)
         {
             new_line += line.substr(pos, found - pos);  // add text before _s1
             new_line += _s2;                            // replace _s1 with _s2
-            pos = found + _s1.length();                 // move past _s1 so next find start from next pos
+            pos = found + _s1.length();                 // move past _s1 so next find start from next pos (pos get updated)
         }
 
         new_line += line.substr(pos);  // add remaining text

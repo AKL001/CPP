@@ -1,6 +1,0 @@
-Hello world!
-This is a simple test file.
-Hello again, world!
-The quick brown fox jumps over the lazy dog.
-Hello world! Hello!
-End of test file.

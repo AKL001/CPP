@@ -6,7 +6,7 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/04 07:22:58 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/04 10:54:38 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/04 13:38:58 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = Harl.cpp main.cpp
 
 HEADER = Harl.hpp
 
-OBJCS = $(SRCS:.cpp=.o)
+OBJCS = $(SRCS:.cpp=.o)	
 
 CPP = c++
 
