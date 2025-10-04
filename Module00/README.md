@@ -188,7 +188,6 @@ cout << s; // but still need std::endl
 
 - ✅ Always prefer C++ style casts over C-style casts for better type safety
 - ✅ Use `const` wherever possible to make your intentions clear
-- ✅ Modern C++ (C++11 and later) provides additional features that make code safer and more expressive
 
 ## 🚀 Example Program
 
@@ -233,7 +232,3 @@ Feel free to contribute by:
 - 💡 Suggesting improvements
 - 📖 Adding more examples
 - ✏️ Fixing typos or errors
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
