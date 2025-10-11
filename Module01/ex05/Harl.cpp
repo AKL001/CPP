@@ -6,11 +6,13 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 07:22:33 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/04 07:22:34 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:03:09 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+#include <map>
+#include <string>
 
 /*
     -syntax of pointer to member function :  
@@ -47,39 +49,19 @@ void Harl::error(void)
     std::cout << "[ERROR] Something went wrong!\n";
 }
 
-Level Harl::getLevel(const std::string& level) {
-    if (level == "debug")    return DEBUG;
-    else if (level == "info")    return INFO;
-    else if (level == "warning") return WARNING;
-    else if (level == "error")   return ERROR;  
-    else
-        return UNKNOWN;
-}
-
 void Harl::complain(std::string level)
 {
-    void (Harl::*ptrDebug)(void) = &Harl::debug;
-    void (Harl::*ptrInfo)(void) = &Harl::info;
-    void (Harl::*ptrWarning)(void) = &Harl::warning;
-    void (Harl::*ptrError)(void) = &Harl::error;
+    void (Harl::*complain[4])(void) = { &Harl::debug , &Harl::info , &Harl::warning, &Harl::error }; 
     
-    switch (getLevel(level))
+    std::string names[4] = {"debug" , "info" , "warning", "error"};
+    
+    for (int i = 0; i < 4; i++)
     {
-    case DEBUG:
-        (this->*ptrDebug)();
-        break;
-    case INFO:
-        (this->*ptrInfo)();
-        break;
-    case WARNING:
-        (this->*ptrWarning)();
-        break;
-    case ERROR:
-        (this->*ptrError)();
-        break;
-    default:
-        std::cout << "Unknown level!" << std::endl;
-        break;
+        if (names[i] == level)
+        {
+            (this->*complain[i])();
+            return;
+        }
     }
 
 }

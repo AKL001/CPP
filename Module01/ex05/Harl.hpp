@@ -6,7 +6,7 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 07:22:37 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/04 07:22:38 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:03:13 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ class Harl
     public:
         Harl();
         ~Harl();
-
         void  complain(std::string level);
-
-        Level getLevel(const std::string &level); 
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 07:22:41 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/04 07:22:42 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/07 16:43:05 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main()
 
     harl.complain("debug");
     harl.complain("info");
-    harl.complain("warning");
+    harl.complain("warning");   
     harl.complain("error");
-    harl.complain("walo");
 }
