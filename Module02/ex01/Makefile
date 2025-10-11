@@ -1,0 +1,30 @@
+
+NAME = Fixed_float
+
+SRC = main.cpp Fixed.cpp
+
+HEADER = Fixed.hpp
+
+OBJC = $(SRC:.cpp=.o)
+
+CPP = c++
+
+FLAGS = -Wall -Werror -Wextra -std=c++98
+
+all: $(NAME)
+
+$(NAME): $(OBJC)
+	$(CPP) $(FLAGS) $(SRC) -o $(NAME)
+
+%.o:%.cpp $(HEADER)
+	$(CPP) $(FLAGS) -c $< -o $@
+
+clean:
+	@rm -rf $(OBJC)
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
