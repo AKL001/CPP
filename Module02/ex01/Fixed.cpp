@@ -31,6 +31,21 @@ Fixed::Fixed(const Fixed& cp)
     *this = cp;
 }
 
+
+/*---------setters and getters---------*/
+int Fixed::getRawBits(void) const
+{
+    std::cout << "getRawBits member function called" << '\n';
+    return _fixedPoint;
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    _fixedPoint = raw;
+}
+/*---------setters and getters---------*/
+
+
 Fixed& Fixed::operator=(const Fixed& cp)
 {
     std::cout << "Copy assignment operator called" << '\n';

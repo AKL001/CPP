@@ -6,7 +6,7 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:17:26 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/11 17:10:39 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/12 13:50:16 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ class Fixed
         Fixed(const float cnv);
         // Destructor called
         ~Fixed();
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
+        
         /* copy constructor && copy assignment */
         Fixed(const Fixed& cp);
         Fixed& operator=(const Fixed& cp);
