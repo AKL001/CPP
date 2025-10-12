@@ -10,12 +10,13 @@ Point::~Point()
 {
 }
 
-Point::Point(float const a,float const b) : _x(a) , _y(b)
+Point::Point(float const a, float const b) : _x(a), _y(b)
 {
-} 
-Point::Point(const Point &cp)
+
+}
+
+Point::Point(const Point &cp) : _x(cp._x) , _y(cp._y)
 {
-    *this = cp;
 }
 
 Point& Point::operator=(const Point &cp)
@@ -28,12 +29,12 @@ Point& Point::operator=(const Point &cp)
 
 /*------setters && getters------*/
 
-Fixed Point::getX(void) const
+const Fixed& Point::getX(void) const
 {
     return this->_x;
 }  
 
-Fixed Point::getY(void) const
+const Fixed& Point::getY(void) const
 {
     return this->_y;
 }

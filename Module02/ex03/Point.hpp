@@ -5,8 +5,8 @@
 class Point
 {
     private:
-        Fixed const _x;
-        Fixed const _y;
+        const Fixed _x;
+        const Fixed _y;
     public:
         Point(); // default constru that initislize x , y to zero
         Point(float const a,float const b); // init x , y ; with a and b
@@ -14,8 +14,8 @@ class Point
         Point& operator=(const Point &cp);
         ~Point();
 
-        Fixed getX(void) const;
-        Fixed getY(void) const;
+        const Fixed &getX(void) const;
+        const Fixed &getY(void) const;
 
 };
 

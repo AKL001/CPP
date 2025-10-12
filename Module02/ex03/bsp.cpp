@@ -3,23 +3,23 @@
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
-    Fixed d1 = (b.getX() - a.getX()) * (point.getY() - a.getY()) -
-               (b.getY() - a.getY()) * (point.getX() - a.getX());
+    // std::cout << "a.x = " << a.getX()  << " a.y = " << a.getY() << std::endl;
+    // std::cout << "b.x = " << b.getX()  << " b.y = " << b.getY() << std::endl;
+    // std::cout << "c.x = " << c.getX()  << " c.y = " << c.getY() << std::endl;
 
-    Fixed d2 = (c.getX() - b.getX()) * (point.getY() - b.getY()) -
-               (c.getY() - b.getY()) * (point.getX() - b.getX());
+    float d1 = (b.getX().toFloat() - a.getX().toFloat()) * (point.getY().toFloat() - a.getY().toFloat()) -
+               (b.getY().toFloat() - a.getY().toFloat()) * (point.getX().toFloat() - a.getX().toFloat());
 
-    Fixed d3 = (a.getX() - c.getX()) * (point.getY() - c.getY()) -
-               (a.getY() - c.getY()) * (point.getX() - c.getX());
+    float d2 = (c.getX().toFloat() - b.getX().toFloat()) * (point.getY().toFloat() - b.getY().toFloat()) -
+               (c.getY().toFloat() - b.getY().toFloat()) * (point.getX().toFloat() - b.getX().toFloat());
 
-    // convert to float for stable comparisons
-    float fd1 = d1.toFloat();
-    float fd2 = d2.toFloat();
-    float fd3 = d3.toFloat();
+    float d3 = (a.getX().toFloat() - c.getX().toFloat()) * (point.getY().toFloat() - c.getY().toFloat()) -
+               (a.getY().toFloat() - c.getY().toFloat()) * (point.getX().toFloat() - c.getX().toFloat());
 
-    bool has_neg = (fd1 < 0) || (fd2 < 0) || (fd3 < 0); 
-    bool has_pos = (fd1 > 0) || (fd2 > 0) || (fd3 > 0);
-    bool has_zero = (fd1 == 0) || (fd2 == 0) || (fd3 == 0);
+    bool has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0); 
+    bool has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+    bool has_zero = (d1 == 0) || (d2 == 0) || (d3 == 0);
+
     if (has_zero)
         return false;
     return !(has_neg && has_pos);
