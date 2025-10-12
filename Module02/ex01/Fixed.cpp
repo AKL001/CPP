@@ -10,14 +10,14 @@ Fixed::Fixed() : _fixedPoint(0)
 Fixed::Fixed(const int cnv)
 {
     std::cout << "Int constructor called" << '\n';
-    _fixedPoint = cnv << _fractionaBits;
+    _fixedPoint = cnv << _fractionalBits;
 }
 
 Fixed::Fixed(const float cnv)
 {
     std::cout << "Float constructor called" << '\n';
     // (1 << _fraction) same as cnv * 256 
-    _fixedPoint = roundf(cnv * (1 << _fractionaBits));
+    _fixedPoint = roundf(cnv * (1 << _fractionalBits));
 }
 
 Fixed::~Fixed()
@@ -60,12 +60,12 @@ Fixed& Fixed::operator=(const Fixed& cp)
 float Fixed::toFloat(void) const
 {
     // (1 << _fraction) same as  256.0 
-    return (float)_fixedPoint / (1 << _fractionaBits);
+    return (float)_fixedPoint / (1 << _fractionalBits);
 }
 
 int   Fixed::toInt(void) const
 {
-    return (_fixedPoint >> _fractionaBits);
+    return (_fixedPoint >> _fractionalBits);
 }
 
 std::ostream& operator<<(std::ostream & out,const Fixed& cnv)

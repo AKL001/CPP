@@ -6,7 +6,7 @@
 /*   By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 15:27:26 by ablabib           #+#    #+#             */
-/*   Updated: 2025/10/11 15:28:43 by ablabib          ###   ########.fr       */
+/*   Updated: 2025/10/12 20:53:16 by ablabib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Fixed
 {
     private:
         int _fixedPoint; // store the fixed point number value
-        static const int _fractionaBits = 8; // 
+        static const int _fractionalBits = 8; // 
     public:
         // constructor
         Fixed();
