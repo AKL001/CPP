@@ -38,6 +38,7 @@ Fixed& Fixed::operator=(const Fixed& cp)
         _fixedPoint = cp._fixedPoint;
     return *this;
 }
+
 /*----------Orthodox Canonical class form------------*/
 
 /* member funtions*/
