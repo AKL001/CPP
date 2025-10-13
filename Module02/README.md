@@ -129,3 +129,38 @@ int result = x + y;    // 3.5 in fixed-point representation
 ```
 0 | 10000000001 | 0111000000000000000000000000000000000000000000000000
 ```
+
+
+#### ⚙️ **Special Values**
+
+| Exponent (E) | Mantissa (M) | Meaning |
+|---------------|---------------|----------|
+| 0 | 0 | **±0** |
+| 0 | ≠ 0 | **Subnormal number** (very small values close to 0) |
+| 2047 (all 1s) | 0 | **±Infinity** |
+| 2047 (all 1s) | ≠ 0 | **NaN** (Not a Number) |
+
+---
+
+#### 💡 Notes
+
+- **Sign bit (S)** → `0` = positive, `1` = negative  
+- **Exponent bias** → 1023 (so actual exponent = stored exponent − 1023)  
+- **Mantissa** → represents fractional binary digits after the leading 1 (implicit)  
+
+---
+
+#### 🔹 **Single Precision (32-bit)** — quick reference
+
+| Field | Bits | Bias |
+|--------|------|------|
+| Sign | 1 | — |
+| Exponent | 8 | 127 |
+| Mantissa | 23 | — |
+
+**Formula:**
+
+```value = (-1)^sign × 1.mantissa × 2^(exponent - 127)```
+
+> 🧠 Floating-point numbers use **base-2 scientific notation** (`1.xxxxx × 2^n`)  
+> to efficiently represent both **very large** and **very small** values using limited bits.
