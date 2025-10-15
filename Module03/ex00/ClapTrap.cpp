@@ -1,28 +1,32 @@
 #include "ClapTrap.hpp"
 
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap() : _name("UNKOWN") , _hitPoints(10) , _energyPoints(10) , _attackDmg(10)
 {
-
+    std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name) : _name(name) , _hitPoints(10) , _energyPoints(10) , _attackDmg(10)
 {
+    std::cout << "ClapTrap " << _name << " is alive and ready to Fight!" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-
+    std::cout << "ClapTrap " << _name << " Disconnected. GG Report: " << _name << std::endl;
 }
+
 // copy constructor
 ClapTrap::ClapTrap(const ClapTrap &cp)
 {
+    std::cout << "ClapTrap Copy constructor called" << std::endl;
     *this = cp;
 }
 // copy assignment constructor
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
     // left hand 
+    std::cout << "ClapTrap Assignation operator called" << std::endl;
     if (this != &other)
     {
         _name = other._name;
@@ -95,7 +99,7 @@ void ClapTrap::takeDamage(unsigned int amount)
         std::cout << "ClapTrap " << _name << " is already destroyed!" << std::endl;
     else
     {
-        if (amount >= (unsigned int)_hitPoints)
+        if (amount >= _hitPoints)
             _hitPoints = 0;
         else
             _hitPoints -= amount;
