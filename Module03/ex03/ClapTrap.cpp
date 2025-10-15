@@ -11,7 +11,13 @@ ClapTrap::ClapTrap(const std::string &name) : _name(name) , _hitPoints(10) , _en
     std::cout << "ClapTrap " << _name << " is alive and ready to Fight!" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name, unsigned int hp,unsigned int ep,unsigned int ad) : _name(name) , _hitPoints(hp) , _energyPoints(ep) , _attackDmg(ad) {}
+ClapTrap::ClapTrap(const std::string &name, unsigned int hp,unsigned int ep,unsigned int ad) : _name(name) , _hitPoints(hp) , _energyPoints(ep) , _attackDmg(ad) 
+{
+    std::cout << "ClapTrap " << _name 
+          << " constructed with HP: " << _hitPoints 
+          << ", EP: " << _energyPoints 
+          << ", AD: " << _attackDmg << std::endl;
+}
 
 ClapTrap::~ClapTrap()
 {

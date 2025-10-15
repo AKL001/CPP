@@ -32,3 +32,6 @@ meaning bass class "Base" and derived class "child"
     -if no override -> the vptr(virtual pointer table) would have the same pointer to the parrent class virtual table
     -else if we have override the compiler create a new child vitual table that contain -> Child::method();
     
+---- we can only override virtual functions -----
+
+
