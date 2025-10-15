@@ -11,9 +11,11 @@ ClapTrap::ClapTrap(const std::string &name) : _name(name) , _hitPoints(10) , _en
     std::cout << "ClapTrap " << _name << " is alive and ready to Fight!" << std::endl;
 }
 
+ClapTrap::ClapTrap(const std::string &name, unsigned int hp,unsigned int ep,unsigned int ad) : _name(name) , _hitPoints(hp) , _energyPoints(ep) , _attackDmg(ad) {}
+
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " << _name << " Disconnected. GG Report: " << _name << std::endl;
+    std::cout << "ClapTrap Destructor called"<< std::endl;
 }
 
 // copy constructor
@@ -26,7 +28,7 @@ ClapTrap::ClapTrap(const ClapTrap &cp)
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
     // left hand 
-    std::cout << "ClapTrap copy Assignment operator called" << std::endl;
+    std::cout << "ClapTrap Assignment operator called" << std::endl;
     if (this != &other)
     {
         _name = other._name;
