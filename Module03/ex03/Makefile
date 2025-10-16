@@ -6,7 +6,7 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/15 20:32:16 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/16 12:55:27 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ HEADER = ClapTrap.hpp FragTrap.hpp DiamondTrap.hpp ScavTrap.hpp
 OBJC = $(SRC:.cpp=.o)
 
 CPP = c++
-
+# FLAGS = -Wall -Wshadow -std=c++98
+# -Wshadow -> to check if we have the same name atttribut in diamond and claptrap , private attributs
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
