@@ -1,5 +1,8 @@
 #include "ClapTrap.hpp"
 
+// Const and reference members must be initialized in the constructor's initializer list.
+// This is because they must have a value **before the constructor body runs**.
+// For references, you cannot rebind them, but you can modify the object they refer to inside the constructor body.
 
 ClapTrap::ClapTrap() : _name("UNKOWN") , _hitPoints(10) , _energyPoints(10) , _attackDmg(10)
 {
