@@ -6,15 +6,15 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/18 12:19:32 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/18 13:43:19 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ClapTrap
 
-SRC = main.cpp Animal.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 
-HEADER = Animal.hpp
+HEADER = Animal.hpp Dog.hpp Cat.hpp
 
 OBJC = $(SRC:.cpp=.o)
 
