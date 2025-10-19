@@ -37,8 +37,8 @@ int main()
             RETURN : null at run time ,
         -Static_cast : when you know the exact derived type at compile time. 
     */
-    Dog* d_copy = new Dog(*dynamic_cast<Dog*>(d));
-    Cat* c_copy = new Cat(*dynamic_cast<Cat*>(c));
+    Dog* d_copy = new Dog(*static_cast<Dog*>(d));
+    Cat* c_copy = new Cat(*static_cast<Cat*>(c));
     
     std::cout << GREEN << d_copy->getType() << RESET << std::endl;
     d_copy->makeSound();
@@ -46,8 +46,8 @@ int main()
     c_copy->makeSound();
 
     std::cout << CYAN << "\n=== Assignment operator tests ===\n" << RESET;
-    *d_copy = *dynamic_cast<Dog*>(d);
-    *c_copy = *dynamic_cast<Cat*>(c);
+    *d_copy = *static_cast<Dog*>(d);
+    *c_copy = *static_cast<Cat*>(c);
 
     std::cout << CYAN << "\n=== Deleting animals ===\n" << RESET;
     delete meta;

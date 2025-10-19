@@ -14,4 +14,13 @@ Notes:
     -The vptr inside the object ensures the right destructor chain is called at runtime.
 
 
-    
+2 **Abstract base class**
+-you cannot create an instance of an abstract base class , but you can create other classes that are derived from it 
+-A pure virtual function is a virtual memeber function that belongs to a base class and need to be redefined in derived class 
+
+- redefined vs override
+
+- when a class has a pure virtual function as a memeber , it becomes an abstract base class 
+
+- virtual vs Pure virtual (=0) => virtual : can be overriden in subclass , but Pure must be overriden in subclass , also the abstract base class can be created as an instance 
+
