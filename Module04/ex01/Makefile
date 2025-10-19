@@ -6,21 +6,21 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/18 13:43:19 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/19 16:05:23 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ClapTrap
+NAME = League_of_legends
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
-HEADER = Animal.hpp Dog.hpp Cat.hpp
+HEADER = Animal.hpp Dog.hpp Cat.hpp Brain.hpp
 
 OBJC = $(SRC:.cpp=.o)
 
 CPP = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
 
 all: $(NAME)
 

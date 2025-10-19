@@ -12,13 +12,18 @@ Cat::Cat()
 Cat::Cat(const Cat& cp) : Animal(cp)
 {
     std::cout << "Cat Copy Constructor Called" << std::endl;
+    // delete _brain;
+    _brain = new Brain(*cp._brain);  
 }
 
 Cat& Cat::operator=(const Cat& cp)
 {
     std::cout << "Cat Copy Assignment Called" << std::endl;
     if (this != &cp)
+    {
         Animal::operator=(cp);
+        *_brain = *cp._brain;
+    }
     return *this;
 }
 
@@ -36,4 +41,9 @@ void Cat::makeSound()
 const std::string& Cat::getType(void) const
 {
     return type;
+}
+
+Brain* Cat::getBrain() const
+{
+    return _brain;
 }

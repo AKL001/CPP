@@ -6,11 +6,11 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/18 13:43:19 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/19 15:49:24 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ClapTrap
+NAME = Zoo
 
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
 
