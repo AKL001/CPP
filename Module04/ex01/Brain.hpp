@@ -2,10 +2,12 @@
 #define BRAIN_HPP
 #include <iostream>
 
+#define IDEAS 100
+
 class Brain
 {
     private:
-        std::string _ideas[100];
+        std::string _ideas[IDEAS];
     public:
         Brain();
         Brain(const Brain& cp);

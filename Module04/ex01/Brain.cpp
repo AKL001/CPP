@@ -16,7 +16,7 @@ Brain& Brain::operator=(const Brain& cp)
     std::cout << "Brain Copy Assignment Called" << std::endl;
     if (this != &cp)
     {
-        for (int i = 0; i < 100 ; i++)
+        for (int i = 0; i < IDEAS ; i++)
         {
             _ideas[i] = cp._ideas[i];
         }
@@ -31,14 +31,14 @@ Brain::~Brain()
 
 std::string Brain::getIdea(int index) const
 {
-    if (index < 0 || index >= 99)
+    if (index < 0 || index >= IDEAS)
         return "";
     return _ideas[index];
 }
 
 void Brain::setIdea(int index, const std::string& idea)
 {
-    if (index < 0 || index >= 99)
+    if (index < 0 || index >= IDEAS)
         return;
     _ideas[index] = idea;
 }
