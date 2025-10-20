@@ -2,6 +2,8 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
@@ -14,7 +16,6 @@
 int main()
 {
     std::cout << CYAN << "\n=== Creating animals ===\n" << RESET;
-
     Animal* meta = new Animal();
     Animal* d = new Dog();
     Animal* c = new Cat();
@@ -55,6 +56,15 @@ int main()
     delete c;
     delete d_copy;
     delete c_copy;
+    std::cout << MAGENTA << "\n=== Wrong Test ===\n" << RESET;
+
+    WrongAnimal *wrong_cat = new WrongCat();
+    WrongAnimal *wrong_animal = new WrongAnimal();
+    
+    wrong_animal->makeSound();
+    wrong_cat->makeSound();
+
+    delete wrong_animal;delete wrong_cat;
     std::cout << MAGENTA << "\n=== Test complete ===\n" << RESET;
     return 0;
 }

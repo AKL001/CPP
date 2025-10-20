@@ -6,15 +6,15 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/19 15:49:24 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/20 13:43:18 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Zoo
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
-HEADER = Animal.hpp Dog.hpp Cat.hpp
+HEADER = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 
 OBJC = $(SRC:.cpp=.o)
 

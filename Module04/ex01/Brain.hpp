@@ -5,7 +5,7 @@
 class Brain
 {
     private:
-        std::string _ideas[10];
+        std::string _ideas[100];
     public:
         Brain();
         Brain(const Brain& cp);

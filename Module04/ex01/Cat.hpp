@@ -12,6 +12,7 @@ class Cat : public Animal
         Cat(const Cat& cp);
         Cat& operator=(const Cat& cp);
         ~Cat();
+        
         void makeSound();
         const std::string& getType(void) const;
         Brain* getBrain() const;

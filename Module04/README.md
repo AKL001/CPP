@@ -24,3 +24,8 @@ Notes:
 
 - virtual vs Pure virtual (=0) => virtual : can be overriden in subclass , but Pure must be overriden in subclass , also the abstract base class can be created as an instance 
 
+- Interface vs Abstract class :
+    => Abstract class : need to have at  least one pure virtual function, can have member functions, 
+        have non-virtual functions.
+    => Interface class : No data members no implemeted methods , only pure virtual functions.
+    
