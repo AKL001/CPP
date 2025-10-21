@@ -19,7 +19,9 @@ Notes:
 -A pure virtual function is a virtual memeber function that belongs to a base class and need to be redefined in derived class 
 
 - redefined vs override
-
+    - override -> when we make our implemtation of a virtual function in a sub class or an abstracted one 
+    - redefined -> when we make also our implementation but is not  virtual 
+    
 - when a class has a pure virtual function as a memeber , it becomes an abstract base class 
 
 - virtual vs Pure virtual (=0) => virtual : can be overriden in subclass , but Pure must be overriden in subclass , also the abstract base class cant be created as an instance 
