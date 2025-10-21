@@ -6,7 +6,7 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/21 15:05:31 by ablabib          ###   ########.fr        #
+#    Updated: 2025/10/21 17:13:13 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJC = $(SRC:.cpp=.o)
 
 CPP = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g3 
+FLAGS = -Wall -Werror -Wextra -std=c++98 
 
 all: $(NAME)
 

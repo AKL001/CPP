@@ -4,11 +4,43 @@
 #include "includes/Character.hpp"
 #include "includes/MateriaSource.hpp"
 
-#define RED     "\033[31m"
-#define GREEN   "\033[32m"
-#define BLUE    "\033[34m"
-#define YELLOW  "\033[33m"
-#define RESET   "\033[0m"
+int main()
+{
+    {
+        IMateriaSource* src = new MateriaSource();
+        src->learnMateria(new Ice());
+        src->learnMateria(new Cure());
+        
+        Character* me = new Character("me");
+        
+        AMateria* tmp;
+        tmp = src->createMateria("ice");
+        me->equip(tmp);
+        me->equip(tmp);
+        tmp = src->createMateria("cure");
+        me->equip(tmp);
+        
+        for (int i = 0; i < 10; i++)
+            me->equip(src->createMateria("ice"));
+        
+        ICharacter* bob = new Character("bob");
+        me->use(0, *bob);
+        me->use(1, *bob);
+        
+        delete bob;
+        delete me;
+        delete src;
+    }
+    Character::cleanFloor();
+    return 0;
+}
+
+
+// #define RED     "\033[31m"
+// #define GREEN   "\033[32m"
+// #define BLUE    "\033[34m"
+// #define YELLOW  "\033[33m"
+// #define RESET   "\033[0m"
 
 // int main()
 // {
@@ -52,38 +84,3 @@
 //     Character::cleanFloor();
 //     return 0;
 // }
-int main()
-{
-    {
-        IMateriaSource* src = new MateriaSource();
-        src->learnMateria(new Ice());
-        src->learnMateria(new Cure());
-        
-        Character* me = new Character("me");
-        
-        AMateria* tmp;
-        tmp = src->createMateria("ice");
-        me->equip(tmp);
-        tmp = src->createMateria("cure");
-        me->equip(tmp);
-        
-        // create more than 4 materias to overflow inventory
-        for (int i = 0; i < 10; i++)
-            me->equip(src->createMateria("ice"));
-        
-        ICharacter* bob = new Character("bob");
-        me->use(0, *bob);
-        me->use(1, *bob);
-        
-        delete bob;
-        delete me;
-        delete src;
-    }
-
-    // clean the global floor at end
-    Character::cleanFloor();
-
-    std::cout << "Program end, check leaks." << std::endl;
-    return 0;
-}
-

@@ -68,6 +68,11 @@ void Character::equip(AMateria* m)
 {
     if (!m)
         return ;
+    for (int i = 0; i < SLOTS; i++)
+    {
+        if (_inverntory[i] == m)
+            return;
+    }
     for (int i = 0; i < SLOTS ;i++)
     {
         if (_inverntory[i] == NULL)
@@ -112,14 +117,3 @@ void Character::cleanFloor()
     floor_count = 0;
 }
 
-void Character::debugFloor()
-{
-    std::cout << "Floor count = " << floor_count << std::endl;
-    for (int i = 0; i < floor_count; i++)
-    {
-        if (floor[i])
-            std::cout << "Floor[" << i << "] exists" << std::endl;
-        else
-            std::cout << "Floor[" << i << "] is NULL" << std::endl;
-    }
-}
