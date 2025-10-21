@@ -5,6 +5,7 @@
 #include "ICharacter.hpp"
 
 #define SLOTS 4
+#define MAX_FLOOR 100
 
 class Character : public ICharacter
 {
@@ -22,6 +23,7 @@ class Character : public ICharacter
 		void				unequip(int idx);
 		void				use(int idx, ICharacter& target);
         static  void cleanFloor(void);
+		static  void debugFloor();
 };
 
 #endif

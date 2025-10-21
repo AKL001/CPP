@@ -2,7 +2,7 @@
 #include "includes/AMateria.hpp"
 #include "includes/ICharacter.hpp"
 
-AMateria *floor[100];
+AMateria *floor[MAX_FLOOR];
 int floor_count = 0;
 
 Character::Character() : _name("UKNOWN_Character")
@@ -56,6 +56,7 @@ Character::~Character()
             _inverntory[i] = NULL;
         }
     }
+    
 }
 
 std::string const &Character::getName() const
@@ -76,7 +77,10 @@ void Character::equip(AMateria* m)
         }
     }
     // if the inventory is full we add the equipe to the floor 
-    floor[floor_count++] = m;
+    if (floor_count < MAX_FLOOR)
+        floor[floor_count++] = m;
+    else
+        delete m;
 }
 
 void Character::unequip(int idx)
@@ -97,6 +101,25 @@ void    Character::use(int idx, ICharacter& target)
 
 void Character::cleanFloor()
 {
-    for(int i=0;i <  floor_count;i++)
-        delete floor[i];
+    for (int i = 0; i < floor_count; i++)
+    {
+        if (floor[i])
+        {
+            delete floor[i];
+            floor[i] = NULL;
+        }
+    }
+    floor_count = 0;
+}
+
+void Character::debugFloor()
+{
+    std::cout << "Floor count = " << floor_count << std::endl;
+    for (int i = 0; i < floor_count; i++)
+    {
+        if (floor[i])
+            std::cout << "Floor[" << i << "] exists" << std::endl;
+        else
+            std::cout << "Floor[" << i << "] is NULL" << std::endl;
+    }
 }
