@@ -1,5 +1,6 @@
 #include "includes/Cure.hpp"
 #include "includes/AMateria.hpp"
+#include "includes/ICharacter.hpp"
 
 Cure::Cure() : AMateria("cure")
 {
@@ -30,7 +31,7 @@ AMateria* Cure::clone() const
     return new Cure(*this);
 }
 
-// void Cure::use(Icharacter& target)
-// {
-//     std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
-// }
+void Cure::use(ICharacter& target)
+{
+    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+}

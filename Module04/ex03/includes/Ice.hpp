@@ -13,7 +13,7 @@ class Ice : public AMateria
         ~Ice(); 
         AMateria* clone() const;
         std::string const& getType() const;
-        // void use(Icharacter & target);
+        void use(ICharacter & target);
 
 };
 
