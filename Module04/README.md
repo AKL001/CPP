@@ -1,33 +1,107 @@
-1 **SubType Polymorphism**
-Subtype poly is achived through inheritance and virtual function , when we have a base class have a virtual function , the derived class can override(change) the function , the correct function is called in runtime
-via a virtual table pointer .
+# C++ Polymorphism & Abstract Classes - Quick Reference
 
-why we use it:
-    - runtime flexibility 
-    - add new type without modifying existing code
-    
-Notes:
-    - Always make the base class destructor virtual when using polymorphism
-    - Polymorphism works with pointers and references, not value types
-    - dynamic binding ,  static binding
-    - The base class only needs a virtual destructor to enable dynamic dispatch for destruction.
-    -The vptr inside the object ensures the right destructor chain is called at runtime.
+## 1. Subtype Polymorphism
 
+**What it is:** Achieved through inheritance and virtual functions. When a base class has a virtual function, derived classes can override it. The correct function is determined at runtime using a virtual table pointer (vptr).
 
-2 **Abstract base class & Interfaces**
--you cannot create an instance of an abstract base class , but you can create other classes that are derived from it 
--A pure virtual function is a virtual memeber function that belongs to a base class and need to be redefined in derived class 
+```cpp
+class Animal {
+public:
+    virtual void makeSound() { cout << "Some sound"; }
+    virtual ~Animal() {}  // Always virtual!
+};
 
-- redefined vs override
-    - override -> when we make our implemtation of a virtual function in a sub class or an abstracted one 
-    - redefined -> when we make also our implementation but is not  virtual 
-    
-- when a class has a pure virtual function as a memeber , it becomes an abstract base class 
+class Dog : public Animal {
+public:
+    void makeSound() override { cout << "Woof!"; }
+};
 
-- virtual vs Pure virtual (=0) => virtual : can be overriden in subclass , but Pure must be overriden in subclass , also the abstract base class cant be created as an instance 
+// Usage
+Animal* pet = new Dog();
+pet->makeSound();  // Calls Dog::makeSound() at runtime
+delete pet;        // Calls Dog destructor, then Animal destructor
+```
 
-- Interface vs Abstract class :
-    => Abstract class : need to have at  least one pure virtual function, can have member functions, 
-        have non-virtual functions.
-    => Interface class : No data members no implemeted methods , only pure virtual functions.
-    
+**Why use it:**
+- Runtime flexibility - decide behavior dynamically
+- Extensibility - add new types without modifying existing code
+
+**Key Notes:**
+- ✅ Always make base class destructor virtual when using polymorphism
+- ✅ Polymorphism works with **pointers and references**, not value types
+- **Dynamic binding** (runtime) vs **Static binding** (compile-time)
+- The vptr ensures the correct destructor chain is called at runtime
+
+---
+
+## 2. Abstract Base Classes & Interfaces
+
+**Abstract Base Class (ABC):** Cannot instantiate directly. Must derive from it and implement pure virtual functions.
+
+**Pure Virtual Function:** Declared with `= 0`, must be overridden in derived classes.
+
+```cpp
+// Abstract Base Class
+class Shape {
+public:
+    virtual double area() = 0;      // Pure virtual
+    virtual void draw() { }         // Regular virtual (optional override)
+    virtual ~Shape() {}
+};
+
+class Circle : public Shape {
+public:
+    double area() override { return 3.14 * r * r; }
+private:
+    double r = 1.0;
+};
+```
+
+### Override vs Redefine
+
+| Term | Meaning |
+|------|---------|
+| **Override** | Implement a virtual function in a subclass |
+| **Redefine** | Implement a non-virtual function (no polymorphism) |
+
+### Virtual vs Pure Virtual
+
+| `virtual` | `virtual ... = 0` (Pure Virtual) |
+|-----------|----------------------------------|
+| Can be overridden | Must be overridden |
+| Base class can be instantiated | Base class becomes abstract |
+
+### Interface vs Abstract Class
+
+```cpp
+// Interface (pure contract)
+class IDrawable {
+public:
+    virtual void draw() = 0;
+    virtual ~IDrawable() {}
+};
+
+// Abstract Class (partial implementation)
+class Shape {
+protected:
+    int id;  // Can have data members
+public:
+    virtual double area() = 0;           // Pure virtual
+    void setID(int i) { id = i; }        // Concrete method
+    virtual ~Shape() {}
+};
+```
+
+| Interface | Abstract Class |
+|-----------|----------------|
+| Only pure virtual functions | At least one pure virtual function |
+| No data members | Can have data members |
+| No implemented methods | Can have implemented methods |
+
+---
+
+## Quick Rules
+- 🔴 Abstract class = has ≥1 pure virtual function
+- 🔴 Can't instantiate abstract classes
+- 🟢 Can use pointers/references to abstract types
+- 🟢 Derived classes must implement all pure virtual functions to be instantiable
