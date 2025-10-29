@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include <exception>
 #include <iostream>
 
 #define RED     "\033[31m"
@@ -14,6 +15,7 @@ int main()
         std::cout << GREEN << "Creating Bureaucrats..." << RESET << std::endl;
         Bureaucrat s("Hamid", 1);        
         Bureaucrat d(s);                   
+        // throw std::exception(); // to test the default excpetion catch 
         Bureaucrat aziz("Akhannouch", 2); 
 
         std::cout << BLUE << s << RESET << std::endl;
@@ -31,6 +33,10 @@ int main()
     {
         std::cout << RED << "Caught Low Exception: " << e.what() << RESET << std::endl;
     }
+    catch (std::exception& e)
+    {
+        std::cout << RED << "Default Exception: " << e.what() << RESET << std::endl;
+    }
 
     try
     {
@@ -47,6 +53,11 @@ int main()
     {
         std::cout << RED << "Caught Low Exception: " << e.what() << RESET << std::endl;
     }
+    catch (std::exception& e)
+    {
+        std::cout << RED << "Default Exception: " << e.what() << RESET << std::endl;
+    }
+
 
     return 0;
 }

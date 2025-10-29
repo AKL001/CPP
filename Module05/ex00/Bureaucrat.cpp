@@ -24,7 +24,7 @@ Bureaucrat::~Bureaucrat()
 {       
 }
 /* getters and setters*/
-const std::string Bureaucrat::getName(void) const
+const std::string& Bureaucrat::getName(void) const
 {
     return _name;
 }
@@ -46,12 +46,12 @@ void  Bureaucrat::setGrade(int grade)
 /* exceptions */
 const char* Bureaucrat::GradeTooHighException::what() const throw ()
 {
-    return "Grade To High";
+    return "Grade Too High";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw ()
 {
-    return "Grade To Low";
+    return "Grade Too Low";
 }
 
 /* increments && Decrements */

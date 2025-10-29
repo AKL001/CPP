@@ -17,7 +17,7 @@ class Bureaucrat
         ~Bureaucrat();
 
     // getters && setters
-        const std::string getName(void) const;
+        const std::string& getName(void) const;
         void  setGrade(int grade);
         int getGrade(void) const;
         
