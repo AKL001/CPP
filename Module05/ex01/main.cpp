@@ -2,7 +2,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-// ANSI color codes
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
 #define YELLOW  "\033[33m"
@@ -13,7 +12,6 @@ int main()
 {
     std::cout << BLUE << "=== TESTING Bureaucrat and Form ===" << RESET << std::endl;
 
-    // ----- Constructor tests -----
     try {
         Bureaucrat b1("Alice", 50);
         Form f1("TopSecret", false, 30, 50);
@@ -21,11 +19,9 @@ int main()
         std::cout << GREEN << "Created Bureaucrat: " << b1 << RESET << std::endl;
         std::cout << GREEN << "Created Form: " << f1 << RESET << std::endl;
 
-        // Copy constructor
         Form f2(f1);
         std::cout << YELLOW << "Copy of Form: " << f2 << RESET << std::endl;
 
-        // Assignment operator
         Form f3;
         f3 = f1;
         std::cout << YELLOW << "Assigned Form: " << f3 << RESET << std::endl;
@@ -36,27 +32,26 @@ int main()
 
     std::cout << BLUE << "\n=== TESTING edge cases ===" << RESET << std::endl;
 
-    // ----- Grade too high / too low -----
     try {
-        Bureaucrat b2("Bob", 0); // too high
+        Bureaucrat b2("Bob", 0); 
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception (grade too high): " << e.what() << RESET << std::endl;
     }
 
     try {
-        Bureaucrat b3("Charlie", 151); // too low
+        Bureaucrat b3("Charlie", 151); 
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception (grade too low): " << e.what() << RESET << std::endl;
     }
 
     try {
-        Form f4("ImpossibleForm", false, 0, 50); // gradeToSign too high
+        Form f4("ImpossibleForm", false, 0, 50); 
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception (Form grade too high): " << e.what() << RESET << std::endl;
     }
 
     try {
-        Form f5("ImpossibleForm2", false, 151, 50); // gradeToSign too low
+        Form f5("ImpossibleForm2", false, 151, 50); 
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception (Form grade too low): " << e.what() << RESET << std::endl;
     }
@@ -73,15 +68,12 @@ int main()
         std::cout << f6 << std::endl;
         std::cout << f7 << std::endl;
 
-        // Diana can sign f6
         b4.signForm(f6);
         std::cout << GREEN << "After signing f6: " << f6 << RESET << std::endl;
 
-        // Eve tries to sign f7 -> should fail
         b5.signForm(f7);
         std::cout << GREEN << "After signing f7: " << f7 << RESET << std::endl;
 
-        // Diana signs f7
         b4.signForm(f7);
         std::cout << GREEN << "After signing f7: " << f7 << RESET << std::endl;
 
@@ -93,14 +85,14 @@ int main()
 
     try {
         Bureaucrat b6("Frank", 1);
-        b6.increment(); // too high
+        b6.incrementGrade();
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception on increment: " << e.what() << RESET << std::endl;
     }
 
     try {
         Bureaucrat b7("Grace", 150);
-        b7.decrement(); // too low
+        b7.decrementGrade(); 
     } catch (const std::exception &e) {
         std::cout << RED << "Expected exception on decrement: " << e.what() << RESET << std::endl;
     }

@@ -11,7 +11,7 @@ class Form
         const int    _gradeToExecute;
     public:
         Form();
-        Form(std::string &name,bool sign,int gradeToSign,int gradeToExecute);
+        Form(const std::string &name,bool sign,int gradeToSign,int gradeToExecute);
         Form(const Form& cp);
         Form& operator=(const Form& cp);
         ~Form();
@@ -38,4 +38,5 @@ class Form
                 const char * what() const throw();
         };
 };
+
 std::ostream& operator<<(std::ostream &out,const Form &f);
