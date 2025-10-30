@@ -24,6 +24,7 @@ class Bureaucrat
     // member functions        
         void incrementGrade();
         void decrementGrade();
+        void executeForm(AForm const & form) const;
 
         void signForm(AForm &Aform); // this call , Form::beSigned
 

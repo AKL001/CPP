@@ -15,6 +15,7 @@ class AForm
         AForm(const AForm& cp);
         AForm& operator=(const AForm& cp);
         ~AForm();
+        
         /* gettes && setters*/
         const std::string &getName(void) const;
         bool    isSigned(void)const;
@@ -25,7 +26,8 @@ class AForm
 
         /* member functions*/
         void beSigned(Bureaucrat &b);   
-        
+        virtual void execute(Bureaucrat const & executor) const = 0;
+        void    validateExecution(const Bureaucrat &excutor) const;
 
         class GradeTooHighException : public std::exception
         {
@@ -37,6 +39,12 @@ class AForm
             public:
                 const char * what() const throw();
         };
+        class FormNotSignedException : public std::exception
+        {
+            public:
+                const char * what() const throw();
+        };
+
 };
 
 std::ostream& operator<<(std::ostream &out,const AForm &f);

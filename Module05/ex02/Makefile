@@ -1,8 +1,8 @@
 NAME = Bureaucrat
 
-SRC = main.cpp Bureaucrat.cpp  Form.cpp
+SRC = main.cpp Bureaucrat.cpp  AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
-HEADER = Bureaucrat.hpp Form.hpp
+HEADER = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 OBJC = $(SRC:.cpp=.o)
 
