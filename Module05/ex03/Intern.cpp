@@ -18,6 +18,9 @@ Intern& Intern::operator=(const Intern&cp)
     return *this;
 }
 
+// helper  funcions / cant use direct contructor cause constructor doesnt return any value 
+// we could make them member function i prefere not to 
+
 AForm* createPPF(const std::string& target) 
 {
     return new PresidentialPardonForm(target);
