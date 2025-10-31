@@ -57,9 +57,9 @@ void AForm::beSigned(Bureaucrat &b) {
 void    AForm::validateExecution(const Bureaucrat &excutor) const
 {
     if(!_signed)
-        throw FormNotSignedException();// exception
+        throw FormNotSignedException();
     if (excutor.getGrade() > _gradeToExecute)
-        throw GradeTooLowException(); // 
+        throw GradeTooLowException(); 
 }
 
 /* exceptions */
