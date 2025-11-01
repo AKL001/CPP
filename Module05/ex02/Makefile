@@ -1,4 +1,16 @@
-NAME = Bureaucrat
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/11/01 11:38:32 by ablabib           #+#    #+#              #
+#    Updated: 2025/11/01 11:39:59 by ablabib          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Forms
 
 SRC = main.cpp Bureaucrat.cpp  AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 

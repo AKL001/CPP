@@ -1,19 +1,23 @@
+#include "AForm.hpp"
 #include "Intern.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
 
 int main()
 {
+    AForm* f1 = NULL;
+    AForm* f2 = NULL;
+    AForm* f3 = NULL;
+
     try
     {
         Intern someRandomIntern;
         Bureaucrat boss("Boss", 1);
 
-        // Valid forms
-        AForm* f1 = someRandomIntern.makeForm("shrubbery creation", "Home");
-        AForm* f2 = someRandomIntern.makeForm("robotomy request", "Bender");
-        AForm* f3 = someRandomIntern.makeForm("presidential pardon", "Marvin");
-
+        // Create valid forms
+        f1 = someRandomIntern.makeForm("shrubbery creation", "Home");
+        f2 = someRandomIntern.makeForm("robotomy request", "Bender");
+        f3 = someRandomIntern.makeForm("presidential pardon", "Marvin");
         // Sign & execute
         boss.signForm(*f1);
         boss.executeForm(*f1);
@@ -33,15 +37,16 @@ int main()
         {
             std::cout << "Exception: " << e.what() << std::endl;
         }
-
-        delete f1;
-        delete f2;
-        delete f3;
     }
     catch (std::exception &e)
     {
         std::cout << "Fatal error: " << e.what() << std::endl;
     }
+    
+    // Cleanup allocated forms
+    delete f1;
+    delete f2;
+    delete f3;
 
     return 0;
 }

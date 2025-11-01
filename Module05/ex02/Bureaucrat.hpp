@@ -12,6 +12,7 @@ class Bureaucrat
         int _grade;
     public:
     //  orthodox Aform
+        Bureaucrat();
         Bureaucrat(const std::string name,int grade);
         Bureaucrat(const Bureaucrat& cp);
         Bureaucrat& operator=(const Bureaucrat& cp);
