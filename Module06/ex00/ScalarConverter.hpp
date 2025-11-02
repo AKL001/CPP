@@ -19,6 +19,6 @@ class ScalarConverter
         ScalarConverter& operator=(const ScalarConverter&cp);
         ~ScalarConverter();
         static WhatType defineType(const std::string& cnv);
-        static void convert(std::string &cnv);
+        static void convert(const std::string &cnv);
 };
 

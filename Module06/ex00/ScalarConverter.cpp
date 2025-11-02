@@ -11,70 +11,6 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter&cp)
 }
 ScalarConverter::~ScalarConverter(){}
 
-
-void ScalarConverter::convert(std::string &cnv)
-{
-    getType type = defineType(cnv);
-
-    if (!type.isInt && !type.isFloat && !type.isDouble && !type.isChar) {
-        std::cout << "Error: Invalid input" << std::endl;
-        return;
-    }
-    // checking for input special value
-    bool isSpecial = (cnv == "nan" || cnv == "nanf" || 
-                      cnv == "+inf" || cnv == "-inf" || 
-                      cnv == "+inff" || cnv == "-inff");
-    // actual values
-    int intVal = 0;
-    float floatVal = 0.0f;
-    double doubleVal = 0.0;
-    char charVal = 0;
-    
-    if (type.isChar) {
-        charVal = cnv[0];
-        intVal = static_cast<int>(charVal);
-        floatVal = static_cast<float>(charVal);
-        doubleVal = static_cast<double>(charVal);
-    }
-    else if (type.isInt) {
-        intVal = atoi(cnv.c_str());
-        charVal = static_cast<char>(intVal);
-        floatVal = static_cast<float>(intVal);
-        doubleVal = static_cast<double>(intVal);
-    }
-    else if (type.isFloat) {
-        floatVal = static_cast<float>(strtod(cnv.c_str(), NULL));
-        intVal = static_cast<int>(floatVal);
-        charVal = static_cast<char>(floatVal);
-        doubleVal = static_cast<double>(floatVal);
-    }
-    else if (type.isDouble) {
-        doubleVal = strtod(cnv.c_str(), NULL);
-        intVal = static_cast<int>(doubleVal);
-        charVal = static_cast<char>(doubleVal);
-        floatVal = static_cast<float>(doubleVal);
-    }
-    
-    std::cout << "char: ";
-    if (isSpecial || intVal < 32 || intVal > 126) {
-        std::cout << "impossible" << std::endl;
-    } else {
-        std::cout << "'" << charVal << "'" << std::endl;
-    }
-    
-    std::cout << "int: ";
-    if (isSpecial) {
-        std::cout << "impossible" << std::endl;
-    } else {
-        std::cout << intVal << std::endl;
-    }
-    
-    std::cout << "float: " << floatVal << "f" << std::endl;
-    
-    std::cout << "double: " << doubleVal << std::endl;
-}
-
-
 static WhatType defineType(const std::string& cnv)
 {
     getType type;
@@ -134,4 +70,66 @@ static WhatType defineType(const std::string& cnv)
         }
     }
     return type;
+}
+
+static void convert(const std::string &cnv)
+{
+    getType type = defineType(cnv);
+
+    if (!type.isInt && !type.isFloat && !type.isDouble && !type.isChar) {
+        std::cout << "Error: Invalid input" << std::endl;
+        return;
+    }
+    // checking for input special value
+    bool isSpecial = (cnv == "nan" || cnv == "nanf" || 
+                      cnv == "+inf" || cnv == "-inf" || 
+                      cnv == "+inff" || cnv == "-inff");
+    // actual values
+    int intVal = 0;
+    float floatVal = 0.0f;
+    double doubleVal = 0.0;
+    char charVal = 0;
+    
+    if (type.isChar) {
+        charVal = cnv[0];
+        intVal = static_cast<int>(charVal);
+        floatVal = static_cast<float>(charVal);
+        doubleVal = static_cast<double>(charVal);
+    }
+    else if (type.isInt) {
+        intVal = atoi(cnv.c_str());
+        charVal = static_cast<char>(intVal);
+        floatVal = static_cast<float>(intVal);
+        doubleVal = static_cast<double>(intVal);
+    }
+    else if (type.isFloat) {
+        floatVal = static_cast<float>(strtod(cnv.c_str(), NULL));
+        intVal = static_cast<int>(floatVal);
+        charVal = static_cast<char>(floatVal);
+        doubleVal = static_cast<double>(floatVal);
+    }
+    else if (type.isDouble) {
+        doubleVal = strtod(cnv.c_str(), NULL);
+        intVal = static_cast<int>(doubleVal);
+        charVal = static_cast<char>(doubleVal);
+        floatVal = static_cast<float>(doubleVal);
+    }
+    
+    std::cout << "char: ";
+    if (isSpecial || intVal < 32 || intVal > 126) {
+        std::cout << "impossible" << std::endl;
+    } else {
+        std::cout << "'" << charVal << "'" << std::endl;
+    }
+    
+    std::cout << "int: ";
+    if (isSpecial) {
+        std::cout << "impossible" << std::endl;
+    } else {
+        std::cout << intVal << std::endl;
+    }
+    
+    std::cout << "float: " << floatVal << "f" << std::endl;
+    
+    std::cout << "double: " << doubleVal << std::endl;
 }
