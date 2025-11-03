@@ -130,8 +130,9 @@ void ScalarConverter::convert(const std::string &cnv)
         std::cout << intVal << std::endl;
     }
     
+    // to set the precision, and fixed for fixed point  
+    // we can also use scientific notation 
     std::cout << std::fixed << std::setprecision(1);
-    // to set the precision 
     std::cout << "float: " << floatVal << "f" << std::endl;
     
     std::cout << "double: " << doubleVal  << std::endl;

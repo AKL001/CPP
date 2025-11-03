@@ -135,3 +135,55 @@ if (!d2) {
 | `const_cast` | Low | Compile-time | Modifying const-ness |
 | `reinterpret_cast` | Very Low | None | Low-level bit manipulation |
 | `dynamic_cast` | High | Runtime | Polymorphic downcasting |
+
+
+
+# 🎯 C++ Casting: Upcast vs Downcast
+
+Quick reference for `static_cast` and `dynamic_cast` with polymorphism rules.
+
+---
+
+## ✅ Upcasting (Derived → Base)
+- Always **safe** — derived contains base
+- Enables polymorphism
+
+```cpp
+Derived* d = new Derived();
+Base* b = d; // ✅ safe upcast
+```
+
+---
+
+## ⚠️ Downcasting (Base → Derived)
+**Risky** — base pointer may not actually point to derived object
+
+### `static_cast` (Compile-time)
+- No runtime check — compiler trusts you
+- **Wrong cast = UB/crash**
+
+```cpp
+Base* b = new Derived();
+Derived* d = static_cast<Derived*>(b); // ✅ works (if correct)
+
+Base* b2 = new Base();
+Derived* d2 = static_cast<Derived*>(b2); // ❌ UB!
+```
+
+### `dynamic_cast` (Runtime)
+- Requires virtual function in base (RTTI)
+- Returns `nullptr` if wrong type → **safe**
+
+```cpp
+Base* b = new Base();
+Derived* d = dynamic_cast<Derived*>(b); // ✅ d == nullptr (safe)
+```
+
+**How it works:** Uses vtable RTTI to verify actual type at runtime
+
+---
+
+## 📌 Rule
+- **Upcast:** Always safe
+- **Downcast with `static_cast`:** Fast but dangerous — use only when certain
+- **Downcast with `dynamic_cast`:** Safe but requires virtual functions
