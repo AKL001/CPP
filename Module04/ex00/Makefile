@@ -6,7 +6,7 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/11 15:28:56 by ablabib           #+#    #+#              #
-#    Updated: 2025/10/21 17:13:21 by ablabib          ###   ########.fr        #
+#    Updated: 2025/11/03 17:50:21 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)
 
 $(NAME): $(OBJC)
-	$(CPP) $(FLAGS) $(SRC) -o $(NAME)
+	$(CPP) $(FLAGS) $(OBJC) -o $(NAME)
 
 %.o:%.cpp $(HEADER)
 	$(CPP) $(FLAGS) -c $< -o $@
