@@ -6,11 +6,11 @@
 #    By: ablabib <ablabib@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/01 11:38:36 by ablabib           #+#    #+#              #
-#    Updated: 2025/11/02 14:29:35 by ablabib          ###   ########.fr        #
+#    Updated: 2025/11/02 14:54:53 by ablabib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Intern
+NAME = convert
 
 SRC = main.cpp ScalarConverter.cpp
 

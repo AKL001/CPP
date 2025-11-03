@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <cstdlib>
 #include <limits.h>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter(){}
 ScalarConverter::ScalarConverter(const ScalarConverter&cp){ *this = cp;}
@@ -11,7 +12,7 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter&cp)
 }
 ScalarConverter::~ScalarConverter(){}
 
-static WhatType defineType(const std::string& cnv)
+WhatType ScalarConverter::defineType(const std::string& cnv)
 {
     getType type;
 
@@ -72,7 +73,7 @@ static WhatType defineType(const std::string& cnv)
     return type;
 }
 
-static void convert(const std::string &cnv)
+void ScalarConverter::convert(const std::string &cnv)
 {
     getType type = defineType(cnv);
 
@@ -117,7 +118,7 @@ static void convert(const std::string &cnv)
     
     std::cout << "char: ";
     if (isSpecial || intVal < 32 || intVal > 126) {
-        std::cout << "impossible" << std::endl;
+        std::cout << "Non displayable" << std::endl;
     } else {
         std::cout << "'" << charVal << "'" << std::endl;
     }
@@ -129,7 +130,9 @@ static void convert(const std::string &cnv)
         std::cout << intVal << std::endl;
     }
     
+    std::cout << std::fixed << std::setprecision(1);
+    // to set the precision 
     std::cout << "float: " << floatVal << "f" << std::endl;
     
-    std::cout << "double: " << doubleVal << std::endl;
+    std::cout << "double: " << doubleVal  << std::endl;
 }

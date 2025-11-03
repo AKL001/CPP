@@ -13,12 +13,13 @@ typedef struct WhatType
 
 class ScalarConverter
 {
-    public:
+    private:
         ScalarConverter();
         ScalarConverter(const ScalarConverter&cp);
         ScalarConverter& operator=(const ScalarConverter&cp);
         ~ScalarConverter();
-        static WhatType defineType(const std::string& cnv);
+    public:
         static void convert(const std::string &cnv);
+        static WhatType defineType(const std::string& cnv);
 };
 
