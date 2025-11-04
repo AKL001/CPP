@@ -13,8 +13,8 @@
 | [02](Module02/README.md) | **Operator Overloading & Canonical Form** | Ad-hoc polymorphism, operator overloading, and the Orthodox Canonical class form. | **100/100** |
 | [03](Module03/README.md) | **Inheritance** | Introduction to inheritance and extending class behavior. | **100/100** |
 | [04](Module04/README.md) | **Abstract Classes & Interfaces** | Subtype polymorphism, abstract classes, and interfaces. | **100/100** |
-| [05](Module05/README.md) | **Repetition & Exceptions** | Repetition of previous concepts and exception handling. | — |
-| [06](Module06/README.md) | **C++ Casts** | Advanced type casting techniques in C++. | — |
+| [05](Module05/README.md) | **Repetition & Exceptions** | Repetition of previous concepts and exception handling. | **100/100** |
+| [06](Module06/README.md) | **C++ Casts** | Advanced type casting techniques in C++. |  **100/100**  |
 | [07](Module07/README.md) | **STL Containers & Algorithms** | Using STL containers (`vector`, `map`, etc.) and standard algorithms. | — |
 | [08](Module08/README.md) | **Advanced OOP & Patterns** | Design patterns, smart pointers, and advanced C++ features. | — |
 
