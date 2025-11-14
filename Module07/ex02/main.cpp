@@ -1,5 +1,7 @@
+#include <exception>
 #include <iostream>
 #include "Array.hpp" 
+
 
 template <typename T>
 void printArray(const Array<T>& arr)
