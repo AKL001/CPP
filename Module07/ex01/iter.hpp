@@ -10,7 +10,7 @@ void print(T &value)
 template <typename T>
 void iter(T *add,const unsigned int len,void (*func)(T&))
 {
-    for (int i = 0; i < len ; i++)
+    for (unsigned int i = 0; i < len ; i++)
         func(add[i]);
 }
 
@@ -18,6 +18,6 @@ void iter(T *add,const unsigned int len,void (*func)(T&))
 template <typename T>
 void iter(T *add,const unsigned int len,void (*func)(const T&))
 {
-    for (int i = 0; i < len ; i++)
+    for (unsigned int i = 0; i < len ; i++)
         func(add[i]);
 }
