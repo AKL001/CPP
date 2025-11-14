@@ -25,3 +25,13 @@ int main()
     // or we define the type explicitly
     print<int>(5);
 }
+
+used by devs 
+(.tpp)=> template implementation files.
+
+
+why cant I seperate the definition of my templates class in .cpp file
+"https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl"
+
+
+well why not just put the implemetation in  a .cpp file is because the linker phase , linked wond know the implemetation of a template if its not in the same .cpp file. (separate compilation model.)

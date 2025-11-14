@@ -8,7 +8,7 @@ void print(T &value)
 }
 
 template <typename T>
-void iter(T *add,const int len,void (*func)(T&))
+void iter(T *add,const unsigned int len,void (*func)(T&))
 {
     for (int i = 0; i < len ; i++)
         func(add[i]);
@@ -16,7 +16,7 @@ void iter(T *add,const int len,void (*func)(T&))
 
 // overloading for the const
 template <typename T>
-void iter(T *add,const int len,void (*func)(const T&))
+void iter(T *add,const unsigned int len,void (*func)(const T&))
 {
     for (int i = 0; i < len ; i++)
         func(add[i]);
