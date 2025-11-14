@@ -12,16 +12,20 @@ class Array
         Array();
         Array(const unsigned int n);
         Array(const Array& cp);
-        Array& operator=(const Array& cp);
         ~Array();
-
-    unsigned int  size() const;
-
-    class CantAccessElementOutBound : public std::exception
-    {
-        public:
-            const char * what() const throw();
-    };
+        // operator overloading 
+        Array& operator=(const Array& cp);
+        T& operator[](unsigned int index);
+        // for a const array so  the compiler would know it
+        const T& operator[](unsigned int index) const;
+        // member functions
+        unsigned int  size() const;
+        // trowing execptions
+        class CantAccessElementOutBound : public std::exception
+        {
+            public:
+                const char * what() const throw();
+        };
 };
 
 #include "Array.tpp"
