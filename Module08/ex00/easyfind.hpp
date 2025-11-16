@@ -1,14 +1,23 @@
 #pragma  once 
 #include <cstddef>
+#include <exception>
 
+class NoOccurrenceIsFound : public std::exception
+{
+    public:
+        const char * what() const throw();
+};
 
 template <typename T>
-T easyfind(T& x,int a)
+size_t easyfind(T& x,int a)  
 {
-    for (size_t i = 0; i < x.size();i++)
+    typename T::iterator it;
+    size_t i = 0;
+    for (it = x.begin(); it != x.end();it++)
     {
-        if(x[i] == a)
-            return x[i];
+        if (*it == a)
+            return i;
+        i++;
     }
-    // throw exception
+    throw NoOccurrenceIsFound();
 }

@@ -1,27 +1,44 @@
-// #include "easyfind.hpp"
+#include "easyfind.hpp"
+#include <exception>
 #include <iostream>
-#include <array>
+#include <ostream>
+#include <vector>
 
-std::ostream& out = std::cout;
+std::ostream &out = std::cout;
 
-template <typename T>
-size_t easyfind(T& x,int a)
+
+const char* NoOccurrenceIsFound::what() const throw()
 {
-    for (size_t i = 0; i < x.size();i++)
-    {
-        if(x[i] == a)
-            return i;
-    }
-    return 0;
-    // throw exception
+    return "No occurrence of the value was found in the container.";
 }
 
+#include <list>
 int main()
 {
-    std::string str = "Helloooo";
-    // int array[4] = {1,2 ,3 ,4};
-    std::array<int, 4> array = {1, 2, 3, 4};
-    out << array[0] << std::endl; 
-    std::cout << "Found [ " << easyfind(array, 'o') << " ]\n";
+   std::list<int> l; 
+    l.push_back(0);
+    l.push_back(2);
+    l.push_back(1);
+    try
+    {
+        out << "Found in possition : " << easyfind(l, 2)  << std::endl;
+    }
+    catch(std::exception &e)
+    {
+        out  << e.what() << std::endl ;
+    }
+
+    std::vector<int> v;
+    v.push_back(42);
+    v.push_back(44);
+    v.push_back(123123);
+    try
+    {
+        out << easyfind(v, 888)  << std::endl;
+    }
+    catch(std::exception &e)
+    {
+        out  << e.what() << std::endl ;
+    }
 
 }
