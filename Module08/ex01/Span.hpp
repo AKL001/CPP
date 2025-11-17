@@ -19,14 +19,21 @@ class Span
         // operator overlaoding for testing 
         // getter i dont want to change the value of the index
         const int& operator[](const unsigned int index) const;
-
-
         // member functions 
         void addNumber(int n);// fill the Span N ?? is it the range of the span of the int to add here ? 
-        
+       
+        template <typename IT>
+        void addNumber(IT begin,IT end)
+        {
+            // std::cout << "begin : " << *begin << " end : " << *end << std::endl;
+            while (begin != end) {
+                addNumber(*begin);    
+                ++begin;   
+            }
+        }
+
         unsigned int shortestSpan();
         unsigned int longestSpan();
-
 
         class IndexOutOfBound : public std::exception
         {

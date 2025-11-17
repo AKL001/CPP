@@ -1,5 +1,4 @@
 #include "Span.hpp"
-#include <cstddef>
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
@@ -7,6 +6,8 @@
 
 
 Span::Span() : _size(0){}
+
+Span::~Span(){}
 
 Span::Span(unsigned int n) : _size(n)
 {
@@ -21,7 +22,8 @@ Span::Span(const Span& cp)
     *this = cp;    
 }
 
-Span& Span::operator=(const Span& cp){
+Span& Span::operator=(const Span& cp)
+{
     
     if (this != &cp)
     {
@@ -38,7 +40,6 @@ const int& Span::operator[](const unsigned int index) const
     return _span[index];
 }
 
-Span::~Span(){}
 
 /* member functions */
 void Span::addNumber(int n)
@@ -53,7 +54,6 @@ unsigned int Span::shortestSpan()
 {
     if (this->_span.size() < 2)
         throw NotEnoughNumbersTofind();
-
     std::vector<int> sorted = _span;
     std::sort(sorted.begin(),sorted.end());
     unsigned int s  = UINT_MAX;
@@ -81,6 +81,7 @@ unsigned int Span::longestSpan()
     return (static_cast<unsigned int>(std::abs(*max_it - *min_it)));
 }
 
+/* overriding */
 const char *Span::CantAddNumberMaxLenReached::what() const throw()
 {
     return "Caught : Cant Add More Numbers max len Reached";

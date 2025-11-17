@@ -15,13 +15,13 @@ const char* NoOccurrenceIsFound::what() const throw()
 #include <list>
 int main()
 {
-   std::list<int> l; 
+    std::list<int> l; 
     l.push_back(0);
     l.push_back(2);
     l.push_back(1);
     try
     {
-        out << "Found in possition : " << easyfind(l, 2)  << std::endl;
+        out << easyfind(l, 2)  << std::endl;
     }
     catch(std::exception &e)
     {
@@ -32,9 +32,18 @@ int main()
     v.push_back(42);
     v.push_back(44);
     v.push_back(123123);
+    v.push_back(123123);
+    v.push_back(32);
+    v.push_back(123);
+    v.push_back(1);
+    v.push_back(-2);
+    v.push_back(-123123);
+    v.push_back(-42);
+    v.push_back(12312);
+
     try
     {
-        out << easyfind(v, 888)  << std::endl;
+        out << easyfind(v, -42)  << std::endl;
     }
     catch(std::exception &e)
     {

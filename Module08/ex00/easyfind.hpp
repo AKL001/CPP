@@ -1,6 +1,8 @@
 #pragma  once 
 #include <cstddef>
 #include <exception>
+#include <algorithm>
+#include <iostream>
 
 class NoOccurrenceIsFound : public std::exception
 {
@@ -9,15 +11,11 @@ class NoOccurrenceIsFound : public std::exception
 };
 
 template <typename T>
-size_t easyfind(T& x,int a)  
+int easyfind(T& container,int a)  
 {
     typename T::iterator it;
-    size_t i = 0;
-    for (it = x.begin(); it != x.end();it++)
-    {
-        if (*it == a)
-            return i;
-        i++;
-    }
-    throw NoOccurrenceIsFound();
+    it = std::find(container.begin(),container.end(),a);
+    if (it != container.end())
+        return *it;
+    throw  NoOccurrenceIsFound();
 }
