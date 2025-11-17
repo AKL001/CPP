@@ -11,6 +11,8 @@ Span::Span() : _size(0){}
 Span::Span(unsigned int n) : _size(n)
 {
     // pre allocate the memory for the vector in memory
+    // std::cout << "size is = " << _span.capacity() << " n is = " << n  << std::endl; 
+    // we can use _span.capacity() to check the capacity
     _span.reserve(_size);
 }
 
@@ -52,23 +54,24 @@ unsigned int Span::shortestSpan()
     if (this->_span.size() < 2)
         throw NotEnoughNumbersTofind();
 
-    // std::vector<int> sorted = _span;
-    
-    // std::sort(sorted.begin(),sorted.end());
+    std::vector<int> sorted = _span;
+    std::sort(sorted.begin(),sorted.end());
     unsigned int s  = UINT_MAX;
-    for (unsigned int i =1 ; i < _span.size(); ++i)
+    for (unsigned int i =1 ; i < sorted.size(); ++i)
     {
-        unsigned int diff = std::abs(_span[i] - _span[i - 1]);
+        unsigned int diff = std::abs(sorted[i] - sorted[i - 1]);
         if (diff  < s)
             s = diff;
     }
     return s;
 }
-// 3 6 9 11 17
-// 6 3 17 9 11
-// std::vector<int> sorted = _span;
-// std::sort(sorted.begin(),sorted.end());
-// return std::abs(sorted[0] - sorted[sorted.size() - 1]);
+/*
+    1> we can also use sorted and compair the first element with last but that would take time complexity of 
+        n(log O)
+    std::vector<int> sorted = _span;
+    std::sort(sorted.begin(),sorted.end());
+    return std::abs(sorted[0] - sorted[sorted.size() - 1]);
+*/
 unsigned int Span::longestSpan()
 {
     if (this->_span.size() < 2)
