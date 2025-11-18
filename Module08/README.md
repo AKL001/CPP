@@ -25,3 +25,13 @@ Iterator  is a smart pointer:
 
 when would interator help us , example :
     vector when it switch block we can just use 
+
+NOTES:
+    Iterators are categories:
+        - output_iterator
+        - forward_iterator
+        -bidirectional_iterator
+        -random_access_iterator
+        -iterator
+<iterator>::distance -> calculate the istance between first and last
+

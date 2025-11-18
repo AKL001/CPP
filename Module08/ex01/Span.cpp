@@ -1,6 +1,5 @@
 #include "Span.hpp"
 #include <vector>
-#include <cstdlib>
 #include <algorithm>
 #include <climits>
 
@@ -24,7 +23,6 @@ Span::Span(const Span& cp)
 
 Span& Span::operator=(const Span& cp)
 {
-    
     if (this != &cp)
     {
         _size = cp._size; 
@@ -59,9 +57,9 @@ unsigned int Span::shortestSpan()
     unsigned int s  = UINT_MAX;
     for (unsigned int i =1 ; i < sorted.size(); ++i)
     {
-        unsigned int diff = std::abs(sorted[i] - sorted[i - 1]);
-        if (diff  < s)
-            s = diff;
+        long diff = static_cast<long>(sorted[i]) - static_cast<long>(sorted[i - 1]);
+        if (static_cast<unsigned int>(diff)  < s)
+            s = static_cast<unsigned int>(diff);
     }
     return s;
 }
@@ -78,7 +76,7 @@ unsigned int Span::longestSpan()
         throw NotEnoughNumbersTofind();
     std::vector<int>::iterator min_it = std::min_element(_span.begin(),_span.end());
     std::vector<int>::iterator max_it = std::max_element(_span.begin(),_span.end());
-    return (static_cast<unsigned int>(std::abs(*max_it - *min_it)));
+    return (static_cast<unsigned int>(static_cast<long>(*max_it) - static_cast<long>(*min_it)));
 }
 
 /* overriding */

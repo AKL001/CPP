@@ -25,11 +25,13 @@ class Span
         template <typename IT>
         void addNumber(IT begin,IT end)
         {
-            // std::cout << "begin : " << *begin << " end : " << *end << std::endl;
-            while (begin != end) {
-                addNumber(*begin);    
-                ++begin;   
-            }
+            // distance return distance between iterators
+            // for random access iterator is uses @- else it uses the opeator++
+            unsigned  int dis =  std::distance(begin,end);
+            if (_span.size() + dis > _size)
+                throw CantAddNumberMaxLenReached();
+            // use _span.insert(_span.end(), begin, end);
+            _span.insert(_span.end(), begin, end);
         }
 
         unsigned int shortestSpan();
