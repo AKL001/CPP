@@ -1,44 +1,44 @@
 #include "Span.hpp"
-#include <iterator>
+#include <exception>
 #include <ostream>
-#include <vector>
 #include <iostream>
-#include <algorithm> // for std::generate
-#include <vector>
 #include <cstdlib>
 
-struct RandomNumberGenerator {
-    int operator()() const {
-        return std::rand();
-    }
-};
+std::ostream &cout = std::cout;
 
 template <typename IT>
 void print_container(IT begin,IT end)
 {
-    int dis = std::distance(begin , end);
-    std::cout << "Dis is : " << dis << '\n';
+    // int dis = std::distance(begin , end);
     while (begin != end)
     {
-        std::cout << *begin << '\n';
+        std::cout << *begin << " ";
         begin++;
     }
 }
 
-
 int main()
 {
-    std::vector<int>v (10);
+    Span sp = Span(5);
+    try
+    {
+        // adding one by one 
+        // sp.addNumber(6);
+        // sp.addNumber(3);
+        // sp.addNumber(17);
+        // sp.addNumber(9);
+        // sp.addNumber(11);
+        int t[] = {6 , 3 , 17,9, 11};
+        // adding multiple numbers
+        sp.addNumber(t,t+5);
+        ::print_container(sp.begin(),sp.end());
+        cout << "\n" << sp.shortestSpan() << std::endl;
+        cout << sp.longestSpan() << std::endl;
 
-    std::srand(time(NULL)); 
-    std::generate(v.begin(),v.end(),RandomNumberGenerator());
-
-    ::print_container(v.begin(), v.end());
-
-    Span sp(10);
-    sp.addNumber(v.begin(),v.end());
-    std::cout << "short :" << sp.shortestSpan() << std::endl;
-    std::cout << "logest :  " << sp.longestSpan() << std::endl;  
+    }catch(std::exception &e)
+    {
+        cout << e.what() << std::endl;
+    }
 
 }
 

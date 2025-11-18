@@ -38,7 +38,6 @@ const int& Span::operator[](const unsigned int index) const
     return _span[index];
 }
 
-
 /* member functions */
 void Span::addNumber(int n)
 {
@@ -77,6 +76,27 @@ unsigned int Span::longestSpan()
     std::vector<int>::iterator min_it = std::min_element(_span.begin(),_span.end());
     std::vector<int>::iterator max_it = std::max_element(_span.begin(),_span.end());
     return (static_cast<unsigned int>(static_cast<long>(*max_it) - static_cast<long>(*min_it)));
+}
+
+/* my own iterator for class Span*/
+std::vector<int>::iterator Span::begin()
+{
+    return _span.begin();
+}
+
+std::vector<int>::iterator Span::end()
+{
+    return _span.end();
+}
+
+int Span::capacity()
+{
+    return _span.capacity();
+}
+
+unsigned int Span::size()
+{
+    return _span.size();
 }
 
 /* overriding */
