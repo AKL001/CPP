@@ -1,30 +1,43 @@
 #pragma once 
+#include <cstddef>
 #include <stack>
 #include <deque>
+#include <iostream>
 
-template <class T>
-class MutantStack : public std::stack<T>
+template <class T, typename Container = std::deque<T>>
+class MutantStack : public std::stack<T, Container>
 {
+    public:
+        /* alias */
+        typedef typename std::stack<T, Container>::value_type value_type;
+        typedef typename std::stack<T, Container>::container_type container_type ;
+        // using our container iterator to iterate using stack
+        typedef typename container_type::iterator iterator;
+        typedef typename container_type::const_iterator const_iterator;
+        // for random access iterator
+        typedef typename container_type::reference reference;
+        typedef typename container_type::const_reference const_reference;
+
     public:
         MutantStack();
         MutantStack(const MutantStack& cp);
         MutantStack& operator=(const MutantStack& cp);
         ~MutantStack();
-
-        /* member functions*/
-        /*
-            empty - size - top - push - emplace - pop - swap
+        /* protected c is an object instance of the container stack is using 
+            - its an actual reference to the actual object .
         */
-        // bool empty();
-        // unsigned int size();
-        // void push(const T val);
-        // T& top() const; // calls the back member of underlying container
-        // void pop(); // the value removed can be re called by (stack::top)
-        // void swap(std::stack<T>);
+        // for interators 
+        Container& get_container();
+        const Container& get_container() const;
 
-        /* iterators */
+        iterator begin();
+        const_iterator begin() const;
 
-
+        iterator end();
+        const_iterator end() const;  
+        /* random access iterator []*/
+        reference operator[](std::size_t n);
+        const_reference operator[](std::size_t n) const;
 };
 
 #include "MutantStack.tpp"

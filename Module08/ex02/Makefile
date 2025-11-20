@@ -4,7 +4,7 @@ SRC = main.cpp
 HEADER =  MutantStack.hpp  MutantStack.tpp
 OBJ = $(SRC:.cpp=.o)	
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra 
 
 CC = c++
 

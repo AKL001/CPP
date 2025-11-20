@@ -172,3 +172,18 @@ adjacent_difference: Compute difference between neighboring elements.
 
 partial_sum: Running total (prefix sum).
 ```
+
+
+for the stack container we can change the default underlying container for 
+stack (deque)
+
+```
+// Uses std::deque (the default)
+std::stack<int> s1; 
+
+// Explicitly use std::vector
+std::stack<int, std::vector<int>> s2; 
+
+// Explicitly use std::list
+std::stack<int, std::list<int>> s3;
+``` 
