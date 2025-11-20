@@ -46,8 +46,22 @@ int main ()
         std::cout << *it << std::endl;
         ++it;
       }
+      out << "-----testing for loop-------\n";
+      MutantStack<int>::iterator itte = mstack.end();
+      for (MutantStack<int>::iterator itt = mstack.begin(); itt != itte ;itt++)
+      {
+        std::cout << *itt << std::endl;
+      }
+
       std::stack<int> s(mstack);
-  
-      out << s.top() << std::endl;    
+
+      MutantStack<int> mswap;
+      mswap.push(666);
+      mswap.swap(mstack);
+
+      // out << s.top() << std::endl;
+      out << "mswap.top() expected()= " << mswap.top() << std::endl;
+      out << "mstack.top() = " << mstack.top() << std::endl;     
+
   return 0;
 }

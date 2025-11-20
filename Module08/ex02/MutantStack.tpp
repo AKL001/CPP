@@ -70,3 +70,9 @@ typename MutantStack<T, Container>::const_reference MutantStack<T, Container>::o
 {
     return this->get_container()[n];
 }
+
+template <class T,typename Container>
+void MutantStack<T, Container>::swap(MutantStack<T, Container> &sp)
+{
+    std::swap((*this),sp);
+}

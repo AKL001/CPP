@@ -38,6 +38,9 @@ class MutantStack : public std::stack<T, Container>
         /* random access iterator []*/
         reference operator[](std::size_t n);
         const_reference operator[](std::size_t n) const;
+
+        void swap(MutantStack<T, Container> &sp);
+
 };
 
 #include "MutantStack.tpp"
