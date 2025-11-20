@@ -1,10 +1,10 @@
 NAME = MutantStack
 
 SRC = main.cpp 
-HEADER =  MutantStack.hpp  MutantStack.tpp -std=c++98
+HEADER =  MutantStack.hpp  MutantStack.tpp 
 OBJ = $(SRC:.cpp=.o)	
 
-CPPFLAGS = -Wall -Werror -Wextra 
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
 CC = c++
 

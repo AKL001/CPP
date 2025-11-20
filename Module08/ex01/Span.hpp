@@ -36,13 +36,14 @@ class Span
         unsigned int shortestSpan();
         unsigned int longestSpan();
         /*
-            making my own iterator for my class so we can call sp.begin() or sp.end()
+            making my class own iterator for my class so we can call sp.begin() or sp.end()
             iterators are just pointers that make ur life easy
         */
         std::vector<int>::iterator begin();
         std::vector<int>::iterator end();
         int capacity();
         unsigned int size();
+
         /*-----------------------------------------*/
         class IndexOutOfBound : public std::exception
         {

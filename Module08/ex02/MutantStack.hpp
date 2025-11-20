@@ -4,7 +4,7 @@
 #include <deque>
 #include <iostream>
 
-template <class T, typename Container = std::deque<T>>
+template <class T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container>
 {
     public:

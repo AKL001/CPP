@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <climits>
 
-
 Span::Span() : _size(0){}
 
 Span::~Span(){}
@@ -30,7 +29,7 @@ Span& Span::operator=(const Span& cp)
     }
     return *this;
 }
-
+// vector already have a random access interator
 const int& Span::operator[](const unsigned int index) const
 {
     if (index >= _span.size())

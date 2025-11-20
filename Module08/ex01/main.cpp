@@ -32,6 +32,9 @@ int main()
         // adding multiple numbers
         sp.addNumber(t,t+5);
         ::print_container(sp.begin(),sp.end());
+        // read only operator
+        // cout << "\nsp[0] = " << sp[0];
+
         cout << "\n" << sp.shortestSpan() << std::endl;
         cout << sp.longestSpan() << std::endl;
 
