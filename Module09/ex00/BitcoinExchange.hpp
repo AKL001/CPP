@@ -30,6 +30,16 @@ class InvalidDateFormat : public std::exception
         const char * what() const throw();
 };
 
+class NoLowerBoundDataFound : public std::exception
+{
+    private:
+        std::string _msg;
+    public:
+        NoLowerBoundDataFound(const std::string &date);
+        const char* what() const throw();
+};
+
+
 
 std::string trim(const std::string &line);
 void validate_input_data(std::ifstream &input);

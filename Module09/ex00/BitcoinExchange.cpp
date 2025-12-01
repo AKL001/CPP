@@ -44,6 +44,17 @@ const char * InvalidDateFormat::what() const throw()
 {
     return "Invalid Date Format.";
 }
+
+NoLowerBoundDataFound::NoLowerBoundDataFound(const std::string &date)
+{
+    _msg = "No early date in DB for " + date;
+}
+
+const char * NoLowerBoundDataFound::what() const throw()
+{
+    return _msg.c_str();
+}
+
 /*----------Utils----------------*/
 std::string trim(const std::string &line)
 {
@@ -52,14 +63,61 @@ std::string trim(const std::string &line)
     size_t r = line.find_last_not_of(" \t\r\n");
     return line.substr(l, r - l + 1);
 }
+/* the lower and high bound work */
+int get_db_value(const std::map<std::string,int> &data_base,const std::string &date)
+{
+    std::map<std::string,int>::const_iterator it = data_base.find(date);
+    if (it != data_base.end())
+        return it->second;
+    else
+    {
+        it = data_base.lower_bound(date);
+        if (it == data_base.begin())
+            throw NoLowerBoundDataFound(date);
+        --it;
+        return it->second;
+    }
+}
 
 /*-----------validating date format------------*/
 bool is_leap_year(int year)
 {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+// 2024-01-00
+void validate_date(const std::string &date)
+{
+     if (date.size() != 10 ||
+        date[4] != '-' || date[7] != '-' ||
+        !isdigit(date[0]) || !isdigit(date[1]) || !isdigit(date[2]) || !isdigit(date[3]) ||
+        !isdigit(date[5]) || !isdigit(date[6]) ||
+        !isdigit(date[8]) || !isdigit(date[9]))
+    {
+        throw BadInput();
+    }
+    int year = atoi(date.substr(0,4).c_str());
+    int month  = atoi(date.substr(5,2).c_str());
+    int day = atoi(date.substr(8,2).c_str());
 
-
+    if (month < 1 || month > 12)
+        throw InvalidDateFormat();
+    int max_day;
+    switch(month)
+    {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12: max_day = 31; break;
+        case 4: case 6: case 9: case 11: max_day = 30; break;
+        case 2:
+            if (is_leap_year(year))
+                max_day = 29;
+            else
+                max_day = 28;
+        break;
+        default:
+            throw InvalidDateFormat();
+    }
+    if (day < 1 || day > max_day)
+        throw InvalidDateFormat();
+}
 
 /*---------------validating value--------------*/
 void is_valid_database_value(const std::string &s,double &value)
@@ -77,7 +135,6 @@ void is_valid_input_value(const std::string &s,double &value)
 {
     is_valid_database_value(s,value);
     if (value > 1000.0) throw LargeNumber(); // meaning value bigger than 1000
-    // value = v;
 }
 
 
@@ -109,7 +166,7 @@ void set_database_csv(std::map<std::string,int> &database)
         std::string value_str = trim(line.substr(pos + 1));
         try
         {
-            // validate_date(date_str);
+            validate_date(date_str);
         }
         catch(std::exception &e)
         {
@@ -131,7 +188,7 @@ void set_database_csv(std::map<std::string,int> &database)
 }
 
 
-void validate_input_data(std::ifstream &input)
+void validate_input_data(std::ifstream &input,std::map<std::string,int> &data_base)
 {
     std::string line;
     const std::string sep = " | ";
@@ -140,19 +197,24 @@ void validate_input_data(std::ifstream &input)
         line = trim(line); 
         if (line.empty()) continue;
         size_t pos = line.find(sep); // maybe needs a .c_str() for c++98
+        if (line.find_first_of("0123456789") == std::string::npos) continue; // this for text only we skip it
         if (pos != 10 || pos == std::string::npos)
         {
-            std::cout << "Error : bad input => " << line << std::endl;
+            std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
         std::string date = trim(line.substr(0,pos));
         std::string value = trim(line.substr(pos + 3));
         try
         {
-            // is_valid_date(date);
+            // validate the date format
+            validate_date(date);
+            // validate the value
             double number = 0;
             is_valid_input_value(value, number);
-            std::cout << date << " => " << value << std::endl; //here we need to extract the value
+            double db_value;
+
+            std::cout << date << " => " << value << " = " << data_base.find()<< std::endl; //here we need to extract the value
         }
         catch (const NonPositiveNumber &e)
         {
@@ -166,7 +228,9 @@ void validate_input_data(std::ifstream &input)
         {
             std::cout << "Error: " << e.what() << " => " << line << std::endl;
         }
-        
+        catch (const InvalidDateFormat &e)
+        {
+            std::cout << "Error: " << e.what() << " => " << line << std::endl;
+        }
     }
-
 }

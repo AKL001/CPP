@@ -16,8 +16,6 @@
 
 std::ostream &out = std::cout;
 
-
-
 // void validate_database(std::ifstream &infile)
 // void validate_inputfile(std::string &infile)
 // {
@@ -38,21 +36,19 @@ std::ostream &out = std::cout;
 int main()
 {
 
-    
-
     // std::map<std::string, float>::iterator it;
     std::map<std::string, int> db;
     std::string fileName = "input.txt";
     std::ifstream infile(fileName.c_str());
-    validate_input_data(infile);
     set_database_csv(db);
-    std::map<std::string, int>::iterator it;
-    std::map<std::string, int>::iterator ite = db.end();
-    out << "-------Printing map--------\n";
-    for (it = db.begin(); it != ite;++it)
-    {
-        out << it->first << " " << it->second << '\n';
-    }
+    validate_input_data(infile);
+    // std::map<std::string, int>::iterator it;
+    // std::map<std::string, int>::iterator ite = db.end();
+    // out << "-------Printing map--------\n";
+    // for (it = db.begin(); it != ite;++it)
+    // {
+    //     out << it->first << " " << it->second << '\n';
+    // }
     // if (!infile.is_open())
     //     {
     //         std::perror("Cant open File");
