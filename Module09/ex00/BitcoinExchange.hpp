@@ -36,12 +36,15 @@ class NoLowerBoundDataFound : public std::exception
         std::string _msg;
     public:
         NoLowerBoundDataFound(const std::string &date);
+        ~NoLowerBoundDataFound() throw(); // why did the compiler give error about this? 
+        // error fixed by adding a destructor and throw() ??
         const char* what() const throw();
 };
 
 
 
 std::string trim(const std::string &line);
-void validate_input_data(std::ifstream &input);
 
-void set_database_csv(std::map<std::string,int> &database);
+void validate_input_data(std::ifstream &input,std::map<std::string,double> &data_base);
+
+void set_database_csv(std::map<std::string,double> &database);

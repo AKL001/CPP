@@ -50,6 +50,8 @@ NoLowerBoundDataFound::NoLowerBoundDataFound(const std::string &date)
     _msg = "No early date in DB for " + date;
 }
 
+NoLowerBoundDataFound::~NoLowerBoundDataFound() throw(){}
+
 const char * NoLowerBoundDataFound::what() const throw()
 {
     return _msg.c_str();
@@ -64,20 +66,20 @@ std::string trim(const std::string &line)
     return line.substr(l, r - l + 1);
 }
 /* the lower and high bound work */
-int get_db_value(const std::map<std::string,int> &data_base,const std::string &date)
-{
-    std::map<std::string,int>::const_iterator it = data_base.find(date);
-    if (it != data_base.end())
-        return it->second;
-    else
-    {
-        it = data_base.lower_bound(date);
-        if (it == data_base.begin())
-            throw NoLowerBoundDataFound(date);
-        --it;
-        return it->second;
-    }
-}
+// double get_db_value(const std::map<std::string,double> &data_base,const std::string &date)
+// {
+//     std::map<std::string,double>::const_iterator it = data_base.find(date);
+//     if (it != data_base.end())
+//         return it->second;
+//     else
+//     {
+//         it = data_base.lower_bound(date);
+//         if (it == data_base.begin())
+//             throw NoLowerBoundDataFound(date);
+//         --it;
+//         return it->second;
+//     }
+// }
 
 /*-----------validating date format------------*/
 bool is_leap_year(int year)
@@ -140,7 +142,7 @@ void is_valid_input_value(const std::string &s,double &value)
 
 
 /*-------------validating database && input file-----------*/
-void set_database_csv(std::map<std::string,int> &database)
+void set_database_csv(std::map<std::string,double> &database)
 {
     std::string line;
     std::string filename = "db.csv";
@@ -188,8 +190,9 @@ void set_database_csv(std::map<std::string,int> &database)
 }
 
 
-void validate_input_data(std::ifstream &input,std::map<std::string,int> &data_base)
+void validate_input_data(std::ifstream &input,std::map<std::string,double> &data_base)
 {
+    (void)data_base;
     std::string line;
     const std::string sep = " | ";
     while(std::getline(input,line))
@@ -212,9 +215,9 @@ void validate_input_data(std::ifstream &input,std::map<std::string,int> &data_ba
             // validate the value
             double number = 0;
             is_valid_input_value(value, number);
-            double db_value;
+            // double db_value;
 
-            std::cout << date << " => " << value << " = " << data_base.find()<< std::endl; //here we need to extract the value
+            std::cout << date << " => " << value << " = "<< std::endl; //here we need to extract the value
         }
         catch (const NonPositiveNumber &e)
         {

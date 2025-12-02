@@ -37,11 +37,11 @@ int main()
 {
 
     // std::map<std::string, float>::iterator it;
-    std::map<std::string, int> db;
+    std::map<std::string, double> db;
     std::string fileName = "input.txt";
     std::ifstream infile(fileName.c_str());
     set_database_csv(db);
-    validate_input_data(infile);
+    validate_input_data(infile,db);
     // std::map<std::string, int>::iterator it;
     // std::map<std::string, int>::iterator ite = db.end();
     // out << "-------Printing map--------\n";
