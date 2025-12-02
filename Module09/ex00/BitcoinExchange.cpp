@@ -66,27 +66,27 @@ std::string trim(const std::string &line)
     return line.substr(l, r - l + 1);
 }
 /* the lower and high bound work */
-// double get_db_value(const std::map<std::string,double> &data_base,const std::string &date)
-// {
-//     std::map<std::string,double>::const_iterator it = data_base.find(date);
-//     if (it != data_base.end())
-//         return it->second;
-//     else
-//     {
-//         it = data_base.lower_bound(date);
-//         if (it == data_base.begin())
-//             throw NoLowerBoundDataFound(date);
-//         --it;
-//         return it->second;
-//     }
-// }
+double get_db_value(const std::map<std::string,double> &data_base,const std::string &date)
+{
+    std::map<std::string,double>::const_iterator it = data_base.find(date);
+    if (it != data_base.end())
+        return it->second;
+    else
+    {
+        it = data_base.lower_bound(date);
+        if (it == data_base.begin())
+            throw NoLowerBoundDataFound(date);
+        --it;
+        return it->second;
+    }
+}
 
 /*-----------validating date format------------*/
 bool is_leap_year(int year)
 {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
-// 2024-01-00
+
 void validate_date(const std::string &date)
 {
      if (date.size() != 10 ||
@@ -139,18 +139,22 @@ void is_valid_input_value(const std::string &s,double &value)
     if (value > 1000.0) throw LargeNumber(); // meaning value bigger than 1000
 }
 
-
-
 /*-------------validating database && input file-----------*/
 void set_database_csv(std::map<std::string,double> &database)
 {
     std::string line;
-    std::string filename = "db.csv";
+    std::string log_file = ".db_log.txt";
+    std::string filename = "data.csv";
     std::ifstream infile(filename.c_str());
-    if (!infile)
+    if (!infile)    
     {
         std::cout << "Error: cannot open file " << filename << std::endl;
         return;
+    }
+    std::ofstream logfile(log_file.c_str());
+    if (!logfile.is_open()) 
+    {
+        std::cerr << "Warning: Could not open log file " << log_file << ". Proceeding without logging." << std::endl;
     }
     size_t line_count = 0;
     while(std::getline(infile, line))
@@ -161,7 +165,7 @@ void set_database_csv(std::map<std::string,double> &database)
         size_t pos = line.find(',');
         if (pos == std::string::npos)
         {
-            // std::cout << "Error: bad Format in line -> " << line << std::endl;
+            logfile << "Error: bad Format in line -> " << line << std::endl;
             continue;
         }
         std::string date_str = trim(line.substr(0, pos));
@@ -172,7 +176,7 @@ void set_database_csv(std::map<std::string,double> &database)
         }
         catch(std::exception &e)
         {
-            // std::cout << "Error (Line " << line_count << "): Invalid date -> " << date_str << std::endl;
+            logfile << "Error (Line " << line_count << "): Invalid date -> " << date_str << std::endl;
             continue;
         }
         double value;
@@ -183,16 +187,19 @@ void set_database_csv(std::map<std::string,double> &database)
         }
         catch(const std::exception &e)
         {
-            // std::cout << "Error (Line " << line_count << "): " << e.what() << " on value string -> " << value_str << std::endl;
+            logfile << "Error (Line " << line_count << "): " << e.what() << " on value string -> " << value_str << std::endl;
             continue;
         }
     }
+    // streams are autmatically closed after getting out of scope
+    // explicit closing
+    infile.close();
+    logfile.close();
 }
 
 
 void validate_input_data(std::ifstream &input,std::map<std::string,double> &data_base)
 {
-    (void)data_base;
     std::string line;
     const std::string sep = " | ";
     while(std::getline(input,line))
@@ -215,9 +222,16 @@ void validate_input_data(std::ifstream &input,std::map<std::string,double> &data
             // validate the value
             double number = 0;
             is_valid_input_value(value, number);
-            // double db_value;
-
-            std::cout << date << " => " << value << " = "<< std::endl; //here we need to extract the value
+            double db_value;
+            try 
+            {
+                db_value = get_db_value(data_base,date);
+                std::cout << date << " => " << value << " = " << (db_value * number) << std::endl; //here we need to extract the value
+            }
+            catch(std::exception &e)
+            {
+                std::cout << e.what() << std::endl;
+            }
         }
         catch (const NonPositiveNumber &e)
         {

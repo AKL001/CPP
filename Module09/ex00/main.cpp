@@ -1,3 +1,4 @@
+#include <cerrno>
 #include <cstdio>
 #include <fstream>
 #include <istream>
@@ -33,46 +34,18 @@ std::ostream &out = std::cout;
     
 // }
 
-int main()
+int main(int ac,char **av)
 {
-
-    // std::map<std::string, float>::iterator it;
+    if (ac != 2)
+    {
+        std::cerr << "Error: Usage: ./btc <inputfile.txt>\n";
+        return 1;
+    }
     std::map<std::string, double> db;
-    std::string fileName = "input.txt";
+    std::string fileName = av[1];
     std::ifstream infile(fileName.c_str());
+    if (!infile) {perror("");return 1;}
     set_database_csv(db);
     validate_input_data(infile,db);
-    // std::map<std::string, int>::iterator it;
-    // std::map<std::string, int>::iterator ite = db.end();
-    // out << "-------Printing map--------\n";
-    // for (it = db.begin(); it != ite;++it)
-    // {
-    //     out << it->first << " " << it->second << '\n';
-    // }
-    // if (!infile.is_open())
-    //     {
-    //         std::perror("Cant open File");
-    //         return 1;
-    //     }
-    // std::string line = "";
-    
-    // std::map<std::string, float> mmap;
-
-    // while (std::getline(infile, line))
-    // {
-
-    //     out << line << '\n';
-    // }
     infile.close();
-
-    /*---------------testing the map container----------------*/
-    // std::string key =  "2011-02-03";
-    // it = mmap.find(key);
-    
-    // if (it != mmap.end())
-    // {
-    //     out << mmap.count(key) << std::endl; 
-    //     out << key << " value = " << mmap.find(key)->second << std::endl; 
-    // }
-
 }

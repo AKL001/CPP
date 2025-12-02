@@ -3,13 +3,11 @@
 #include <iostream>
 #include <map>
 
-
 class NonPositiveNumber : public std::exception
 {
     public:
         const char * what() const throw();
 };
-
 
 class BadInput : public std::exception
 {
@@ -36,12 +34,9 @@ class NoLowerBoundDataFound : public std::exception
         std::string _msg;
     public:
         NoLowerBoundDataFound(const std::string &date);
-        ~NoLowerBoundDataFound() throw(); // why did the compiler give error about this? 
-        // error fixed by adding a destructor and throw() ??
+        ~NoLowerBoundDataFound() throw();
         const char* what() const throw();
 };
-
-
 
 std::string trim(const std::string &line);
 
