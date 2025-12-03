@@ -148,7 +148,7 @@ void set_database_csv(std::map<std::string,double> &database)
     std::ifstream infile(filename.c_str());
     if (!infile)    
     {
-        std::cout << "Error: cannot open file " << filename << std::endl;
+        std::cout << "Error: cannot open / need data.csv in dirrectory " << filename << std::endl;
         return;
     }
     std::ofstream logfile(log_file.c_str());
