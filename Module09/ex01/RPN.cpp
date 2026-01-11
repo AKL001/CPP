@@ -8,7 +8,7 @@
 #include <cerrno>
 #include <cstdlib>
 #include <sstream>
-#include <vector>
+#include <stack>
 
 static bool is_operator(const std::string &tok)
 {
@@ -56,8 +56,8 @@ int RPN_calculator(const std::string& expr)
 {
     std::istringstream iss(expr);
     std::string token;
-    std::vector<int>stack;
-    
+    std::stack<int> sstack; 
+
     while(iss >> token)
     {
         if (is_number(token))
@@ -71,30 +71,32 @@ int RPN_calculator(const std::string& expr)
             if (value < 0 || value >= 10)
                 throw InvalidRPNsyntax();
 
-            stack.push_back(static_cast<int>(value));
+            sstack.push(static_cast<int>(value));
         }
         else if (is_operator(token))
         {
-            if (stack.size() < 2)
+            if (sstack.size() < 2)
                 throw InvalidRPNsyntax();
-            double right = stack.back(); stack.pop_back();
-            double left  = stack.back(); stack.pop_back();
+
+            int right = sstack.top(); sstack.pop();
+            int left = sstack.top(); sstack.pop();
+
             if (token[0] == '/' && right == 0)
                 throw DivisionByZero();
             switch (token[0])
             {
-                case '+': stack.push_back(left + right); break;
-                case '-': stack.push_back(left - right); break;
-                case '*': stack.push_back(left * right); break;
-                case '/': stack.push_back(left / right); break;
+                case '+': sstack.push(left + right); break;
+                case '-': sstack.push(left - right); break;
+                case '*': sstack.push(left * right); break;
+                case '/': sstack.push(left / right); break;
             }
         }
         else
             throw InvalidToken();
     }
-    if (stack.size() != 1)
+    if (sstack.size() != 1)
         throw InvalidRPNsyntax();
-    return stack.back();
+    return sstack.top();
 }
 
 
