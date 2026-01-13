@@ -1,0 +1,2 @@
+for RPN just add numbers  to a stack or a container of ur choice when contring an operator , pop 2 number calculate them push the result back, and so one , for the parsing just use the depth meaning the number of numbers should be n-1 of operators 
+i use depth but when contring an operator the depth should always be more than 2 meaning implementing the operator at 2 operand 
