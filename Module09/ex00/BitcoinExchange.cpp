@@ -6,14 +6,7 @@
     - map::insert to insert new elements 
     // use of std::multimap , for multiple keys to use 
     - map by default it sort the keys 
-
 */
-
-// validating the data of input.txt  
-// then validating the date , and the value 
-// if the date is not in our database , we use the closest date contained in our DB (we use the lower date not the upper one)
-
-/* throw exception when an  error is ocurred */
 #include <cstdarg>
 #include <cstddef>
 #include <exception>
