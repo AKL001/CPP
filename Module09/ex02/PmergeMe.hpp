@@ -6,14 +6,13 @@
 #include <cstddef>
 #include <cstdio>
 #include <ctime>
-#include <iostream>
-#include <sstream>
+#include <iostream> 
 #include <stdexcept>
 #include <vector>
 #include <set>
 #include <deque>
-#include <cstdlib> // Required for std::strtol
-#include <climits> // Required for INT_MAX
+#include <cstdlib>
+#include <climits>
 
 
 struct Pair
@@ -31,9 +30,10 @@ struct Pair
     count_comparison()
 */
 
-void binary_insert(std::vector<int>& v, int value, size_t right);
+std::vector<int> sort_vector(std::vector<int> & array,std::vector<size_t>& jacob); 
+std::deque<int> sort_deque(std::deque<int>& array, std::vector<size_t>& jacob);
+
 std::vector<size_t> generateJacobsthal(size_t n);
-std::vector<int> sort_vector(std::vector<int> & array);
 bool is_valid_number(const std::string& num);
 
 template <typename Containe>
@@ -67,8 +67,27 @@ void fill_container(char **av,Containe& container)
     }    
 }
 
-/*
-    # HELPER FUNCTIONS
-*/
-void  PrintArray(std::vector<int>& array);
-void  PrintArray(std::vector<size_t>& array);
+template <typename Container>
+void binary_insert(Container& c, int value, size_t right)
+{
+    size_t left = 0;
+    while (left < right)
+    {
+        size_t mid = left + (right - left) / 2;
+        if (value < c[mid])
+            right = mid;
+        else
+            left = mid + 1;
+    }
+    c.insert(c.begin() + left, value);
+}
+
+template <typename Container>
+void  PrintArray(Container& array)
+{
+    for(size_t i=0; i< array.size();++i)
+    {
+        std::cout << array[i] << " ";
+    }
+    std::cout << std::endl;
+}

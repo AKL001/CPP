@@ -38,4 +38,19 @@ engineering the logic to work with :
         -getters for the time and comparison
 
 
+use this commands to check if sorted 
+``` bash :
 
+    ./PmergeMe `shuf -i 1-1000000 -n 3000 | tr "\n" " "` | grep "After" | python3 -c "import sys; line = sys.stdin.read().split()[1:]; nums = [int(n) for n in line]; print('Sorted:', nums == sorted(nums))"
+
+    ./PmergeMe 3 5 9 7 4 | grep "After" | python3 -c "import sys; line = sys.stdin.read().split()[1:]; nums = [int(n) for n in line]; print('Sorted:', nums == sorted(nums))"
+
+    or 
+
+    # 1. Run your program and save only the numbers from "After:" to a file
+    ./PmergeMe 5 2 3 1 4 | grep "After" | cut -d ':' -f 2 | tr ' ' '\n' | grep -v "^$" > output.txt
+
+    ./PmergeMe `shuf -i 1-1000000 -n 30000 | tr "\n" " "` | grep "After" | cut -d ':' -f 2 | tr ' ' '\n' | grep -v "^$" > output.txt
+    # 2. Check if that file is sorted numerically (-n)
+    sort -n -c output.txt
+``` 

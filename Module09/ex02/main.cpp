@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 #include <algorithm>
+#include <iomanip>
+#include <vector>
 
 /*
     # HELPER FUNTIONS
@@ -7,31 +9,6 @@
     # void  PrintArray(std::vector<int>& array)
     # generate the jacosthal sequence array generateJacobsthal
 */
-
-void  PrintArray(std::vector<int>& array)
-{
-    // std::cout << "[ ";
-    for(size_t i=0; i< array.size();++i)
-    {
-        std::cout << array[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-// void  PrintArray(std::vector<size_t>& array)
-// {
-//     cout << "-----jacobstal list n = [ " << array.size() << "-----\n";
-//     cout << "[ ";
-//     for(size_t i=0; i< array.size();++i)
-//     {
-//         cout << array[i] << " ";
-//     }
-//     cout << "] " << endl;
-//     cout << "\n---------------------\n";
-// }
-
-// [7 2] [8 4] [1 9] 2  
-//  0 1   2 3   4 5 
 
 int main(int ac,char **av)
 {
@@ -42,25 +19,42 @@ int main(int ac,char **av)
     }
     std::vector<int> myVector;
     std::deque<int>  myDeque;
+    
     try
     {   
         fill_container(av, myVector);
+        fill_container(av, myDeque);
+        // generating the jacobsthal sequence depending on the number of elements we have 
+        std::vector<size_t> jacob = generateJacobsthal(ac - 1);
+
         std::cout << "Befor: ";
         PrintArray(myVector);
-        
+
+        // calculating vector time in microseconds us
         std::clock_t start_vec = std::clock();
-        
-        myVector = sort_vector(myVector); // Or sort_vector if you renamed it
+        myVector = sort_vector(myVector,jacob);
         std::clock_t end_vec = std::clock();
-        double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000;
+        double time_vec = static_cast<double>(end_vec - start_vec);
+
+        // caulclating deque time in microseconds us
+        std::clock_t start_deq = std::clock();
+        myDeque = sort_deque(myDeque,jacob);
+        std::clock_t end_deq = std::clock();
+        double time_deq = static_cast<double>(end_deq - start_deq);
+
 
         std::cout << "After:  ";
         PrintArray(myVector);
 
-        // 4. Print Timing Results
+        // adding precision instead of scientific notation
         std::cout << "Time to process a range of " << myVector.size() 
-                  << " elements with std::vector : " << time_vec << " us" << std::endl;
+          << " elements with std::vector : "    
+          << std::fixed << std::setprecision(5) << time_vec << " us" << std::endl;
 
+        std::cout << "Time to process a range of " << myDeque.size() 
+        << " elements with std::vector : "    
+        << std::fixed << std::setprecision(5) << time_deq << " us" << std::endl;
+        
     }
     catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
