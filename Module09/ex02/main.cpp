@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
-#include <algorithm>
-#include <iomanip>
+#include <ctime>
 #include <vector>
 
 /*
@@ -43,17 +42,21 @@ int main(int ac,char **av)
         double time_deq = static_cast<double>(end_deq - start_deq);
 
 
+
         std::cout << "After:  ";
         PrintArray(myVector);
 
-        // adding precision instead of scientific notation
+        // adding precision instead of scientific notation 
+        // printing the value in microseconds
+        // std::cout << std::fixed << std::setprecision(5);
+
         std::cout << "Time to process a range of " << myVector.size() 
-          << " elements with std::vector : "    
-          << std::fixed << std::setprecision(5) << time_vec << " us" << std::endl;
+        << " elements with std::vector : "    
+        << time_vec << " us" << std::endl;
 
         std::cout << "Time to process a range of " << myDeque.size() 
-        << " elements with std::vector : "    
-        << std::fixed << std::setprecision(5) << time_deq << " us" << std::endl;
+        << " elements with std::deque : "    
+        << time_deq << " us" << std::endl;
         
     }
     catch (const std::exception& e) {
