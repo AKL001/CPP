@@ -17,6 +17,6 @@
 | [06](Module06/README.md) | **C++ Casts** | Advanced type casting techniques in C++. |  **100/100**  |
 | [07](Module07/README.md) | **STL Containers & Algorithms** | Using STL containers (`vector`, `map`, etc.) and standard algorithms. | **100/100** |
 | [08](Module08/README.md) | **Advanced OOP & Patterns** | Design patterns, smart pointers, and advanced C++ features. | **100/100** |
-| [09](Module09/README.md) | **STL & Algorithm** | Design patterns, Parsing, Merge insertion sort by Ford-Johnson algorithm. | **** |
+| [09](Module09/README.md) | **STL & Algorithm** | Design patterns, Parsing, Merge insertion sort by Ford-Johnson algorithm. | **100/100** |
 
 ---
